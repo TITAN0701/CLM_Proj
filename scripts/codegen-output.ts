@@ -1,0 +1,35 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://192.168.0.122:19010/login');
+  await page.getByText('admin@local').click();
+  await page.getByRole('button', { name: '登入' }).click();
+  await page.getByRole('link', { name: '帳號' }).click();
+  await page.getByRole('button', { name: 'TWCA EAB' }).click();
+  await page.getByRole('button', { name: '新增 Account (twca)' }).click();
+  await page.getByRole('textbox', { name: 'production / subsidiary-a' }).click();
+  await page.getByRole('textbox', { name: 'production / subsidiary-a' }).fill('TEST1');
+  await page.getByRole('button', { name: '註冊' }).click();
+  await page.getByText('Required fields missing or').click();
+  await page.getByRole('textbox', { name: 'ops@example.com' }).click();
+  await page.getByRole('textbox', { name: 'ops@example.com' }).fill('');
+  await page.getByRole('textbox', { name: 'ops@example.com' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'ops@example.com' }).fill('titan.lee@ruenxin.com.tw');
+  await page.getByRole('button', { name: '註冊' }).click();
+  await page.getByText('Provider \'twca\' requires EAB').click();
+  await page.getByRole('textbox', { name: 'M2-100-xxxx-' }).click();
+  await page.getByRole('textbox', { name: 'M2-100-xxxx-' }).fill('1212212-21313');
+  await page.getByRole('button', { name: '註冊' }).click();
+  await page.getByText('Provider \'twca\' requires EAB').click();
+  await page.getByText('顯示名稱 *聯絡 email *EAB Key ID *').click();
+  await page.getByRole('textbox', { name: 'base64url-string-from-CA' }).click();
+  await page.getByRole('textbox', { name: 'base64url-string-from-CA' }).fill('13jkwqeq1313');
+  await page.getByRole('button', { name: '註冊' }).click();
+  await page.getByText('Bad key size:').click();
+  await page.getByRole('textbox', { name: 'ops@example.com' }).click();
+  await page.getByRole('textbox', { name: 'production / subsidiary-a' }).click();
+  await page.getByRole('textbox', { name: 'production / subsidiary-a' }).fill('');
+  await page.getByRole('button', { name: '註冊' }).click();
+  await page.getByText('Required fields missing or').click();
+  await page.getByRole('button', { name: '取消' }).click();
+});

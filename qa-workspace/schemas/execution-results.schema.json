@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QA Execution Results",
+  "type": "object",
+  "required": ["feature", "source_test_cases", "scenario_reviews", "test_results"],
+  "properties": {
+    "feature": {
+      "type": "string",
+      "description": "Feature folder name. Must match qa-workspace/specs/{feature}."
+    },
+    "source_test_cases": {
+      "type": "string",
+      "description": "Path to the source test-cases.json file."
+    },
+    "scenario_reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scenario_id", "status"],
+        "properties": {
+          "scenario_id": {
+            "type": "string",
+            "description": "Scenario ID from scenarios.md.",
+            "pattern": "^SC-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"
+          },
+          "status": {
+            "type": "string",
+            "description": "Review status for whether this scenario is testable.",
+            "enum": ["Not Marked", "Ready", "Need Confirm", "Approved", "Blocked"]
+          },
+          "notes": {
+            "type": "string",
+            "description": "Reason, question, or review note for this scenario."
+          }
+        }
+      }
+    },
+    "test_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["test_case_id", "platform", "status"],
+        "properties": {
+          "test_case_id": {
+            "type": "string",
+            "description": "Test case ID from test-cases.json.",
+            "pattern": "^TC-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"
+          },
+          "platform": {
+            "type": "string",
+            "description": "Execution platform, for example Desktop / Win Chrome."
+          },
+          "status": {
+            "type": "string",
+            "description": "Execution result status.",
+            "enum": ["Not Run", "Ready", "Pass", "Fail", "Blocked", "N/A"]
+          },
+          "executed_at": {
+            "type": "string",
+            "description": "Execution timestamp. Prefer scripts/update-execution-result.py to auto-fill it."
+          },
+          "test_url": {
+            "type": "string",
+            "description": "Page URL used for this execution, for example https://qa.example.com/forgot-password."
+          },
+          "screenshot": {
+            "type": "string",
+            "description": "Screenshot file path or URL for this execution."
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Video, Allure report, CI artifact, issue, PR link, or other evidence."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Failure reason, blocking reason, or extra QA note."
+          }
+        }
+      }
+    }
+  }
+}

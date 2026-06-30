@@ -1,0 +1,299 @@
+﻿{
+    "pipeline_id":  "PIPE-RXCLM-20260618-002",
+    "started_at":  "2026-06-18T09:08:00+08:00",
+    "last_updated":  "2026-06-25T13:48:13+08:00",
+    "scope":  "all",
+    "features":  {
+                     "憑證掃描":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  1,
+                                  "pending":  1,
+                                  "fail":  0,
+                                  "playwright_verified":  1,
+                                  "note":  "TC-F16-01 smoke pass（Endpoint 列表顯示）；觸發掃描 Pending"
+                              },
+                     "系統設定":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  1,
+                                  "pending":  2,
+                                  "fail":  0,
+                                  "playwright_verified":  1,
+                                  "note":  "TC-F19-01 smoke pass；修改設定值/SMTP 配置 Pending"
+                              },
+                     "網域詳細":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  2,
+                                  "pending":  4,
+                                  "fail":  0,
+                                  "playwright_verified":  2,
+                                  "note":  "TC-F03-01/02 smoke pass；編輯/Tag/Renew/Endpoint Pending"
+                              },
+                     "ACME 帳號":  {
+                                     "qa5":  "done",
+                                     "tests_run":  "done",
+                                     "pass":  1,
+                                     "pending":  0,
+                                     "fail":  0,
+                                     "playwright_verified":  0,
+                                     "note":  ""
+                                 },
+                     "CA 機構管理":  {
+                                     "qa5":  "done",
+                                     "tests_run":  "done",
+                                     "pass":  5,
+                                     "pending":  0,
+                                     "fail":  0,
+                                     "playwright_verified":  0,
+                                     "note":  ""
+                                 },
+                     "Order 詳細":  {
+                                      "qa5":  "done",
+                                      "tests_run":  "done",
+                                      "pass":  1,
+                                      "pending":  0,
+                                      "fail":  0,
+                                      "playwright_verified":  1,
+                                      "note":  "TC-F04-01 smoke pass"
+                                  },
+                     "儀表板":  {
+                                 "qa5":  "done",
+                                 "tests_run":  "done",
+                                 "pass":  4,
+                                 "pending":  0,
+                                 "fail":  0
+                             },
+                     "憑證列表":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  5,
+                                  "pending":  0,
+                                  "fail":  0
+                              },
+                     "Account 詳細":  {
+                                        "qa5":  "done",
+                                        "tests_run":  "done",
+                                        "pass":  7,
+                                        "pending":  0,
+                                        "fail":  1
+                                    },
+                     "CA 機構":  {
+                                   "qa5":  "done",
+                                   "tests_run":  "done",
+                                   "pass":  5,
+                                   "pending":  0,
+                                   "fail":  0
+                               },
+                     "DNS 機構":  {
+                                    "qa5":  "done",
+                                    "tests_run":  "done",
+                                    "pass":  7,
+                                    "pending":  0,
+                                    "fail":  0
+                                },
+                     "部署核准":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  1,
+                                  "pending":  3,
+                                  "fail":  0
+                              },
+                     "稽核紀錄":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  3,
+                                  "pending":  2,
+                                  "fail":  0
+                              },
+                     "合規政策":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  2,
+                                  "pending":  3,
+                                  "fail":  0
+                              },
+                     "申請新憑證":  {
+                                   "qa5":  "done",
+                                   "tests_run":  "done",
+                                   "pass":  7,
+                                   "pending":  9,
+                                   "fail":  0
+                               },
+                     "Group 管理":  {
+                                      "qa5":  "done",
+                                      "tests_run":  "done",
+                                      "pass":  3,
+                                      "pending":  0,
+                                      "fail":  0
+                                  },
+                     "User 管理":  {
+                                     "qa5":  "done",
+                                     "tests_run":  "done",
+                                     "pass":  6,
+                                     "pending":  0,
+                                     "fail":  0
+                                 },
+                     "匯入既有憑證":  {
+                                    "qa5":  "done",
+                                    "tests_run":  "done",
+                                    "pass":  1,
+                                    "pending":  1,
+                                    "fail":  0
+                                },
+                     "Endpoint 管理":  {
+                                         "qa5":  "done",
+                                         "tests_run":  "done",
+                                         "pass":  5,
+                                         "pending":  0,
+                                         "fail":  1
+                                     },
+                     "授權管理":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  1,
+                                  "pending":  1,
+                                  "fail":  0
+                              },
+                     "我的帳號":  {
+                                  "qa5":  "done",
+                                  "tests_run":  "done",
+                                  "pass":  2,
+                                  "pending":  1,
+                                  "fail":  0
+                              }
+                 },
+    "totals":  {
+                   "pass":  70,
+                   "pending":  27,
+                   "fail":  2,
+                   "specs":  99
+               },
+    "fail_summary":  [
+
+                     ],
+    "pending_breakdown":  {
+                              "needs_fixture":  {
+                                                    "count":  2,
+                                                    "tcs":  [
+                                                                "TC-F06-01",
+                                                                "TC-F14-02"
+                                                            ],
+                                                    "reason":  "需準備 PEM 憑證 fixture 或有效授權碼"
+                                                },
+                              "needs_pending_data":  {
+                                                         "count":  2,
+                                                         "tcs":  [
+                                                                     "TC-F15-02",
+                                                                     "TC-F15-03"
+                                                                 ],
+                                                         "reason":  "需要環境中有 Pending 部署任務"
+                                                     },
+                              "write_operations":  {
+                                                       "count":  8,
+                                                       "tcs":  [
+                                                                   "TC-F03-03",
+                                                                   "TC-F03-04",
+                                                                   "TC-F03-05",
+                                                                   "TC-F03-06",
+                                                                   "TC-F16-02",
+                                                                   "TC-F17-02",
+                                                                   "TC-F19-02",
+                                                                   "TC-F19-03"
+                                                               ],
+                                                       "reason":  "新增/編輯/刪除操作，需 SDET 確認 selector 後啟用（目前 it.skip）"
+                                                   },
+                              "dangerous":  {
+                                                "count":  2,
+                                                "tcs":  [
+                                                            "TC-F05-03",
+                                                            "TC-F20-02"
+                                                        ],
+                                                "reason":  "TC-F05-03 會建立真實 Order；TC-F20-02 涉及密碼變更"
+                                            },
+                              "codegen_skip":  {
+                                                   "count":  1,
+                                                   "tcs":  [
+                                                               "TC-F09-06"
+                                                           ],
+                                                   "reason":  "codegen 錄製待補，目前 it.skip"
+                                               }
+                          },
+    "tc_results":  {
+                       "TC-F08-04":  "fail",
+                       "TC-F15-02":  "pending",
+                       "TC-F15-03":  "pending",
+                       "TC-F14-02":  "pending",
+                       "TC-F16-02":  "pending",
+                       "TC-F17-02":  "pending",
+                       "TC-F19-02":  "pending",
+                       "TC-F19-03":  "pending",
+                       "TC-F03-03":  "pending",
+                       "TC-F03-04":  "pending",
+                       "TC-F03-05":  "pending",
+                       "TC-F03-06":  "pending",
+                       "TC-F05-03":  "pending",
+                       "TC-F06-01":  "pending",
+                       "TC-F06-03":  "pass",
+                       "TC-F20-02":  "pending",
+                       "TC-F20-03":  "pass",
+                       "TC-F08-07":  "pass",
+                       "TC-F08-01":  "pass",
+                       "TC-F08-02":  "pass",
+                       "TC-F08-03":  "pass",
+                       "TC-F08-05":  "pass",
+                       "TC-F08-06":  "pass",
+                       "TC-F07-01":  "pass",
+                       "TC-F01-01":  "pass",
+                       "TC-F01-02":  "pass",
+                       "TC-F01-03":  "pass",
+                       "TC-F01-04":  "pass",
+                       "TC-F02-01":  "pass",
+                       "TC-F02-02":  "pass",
+                       "TC-F02-03":  "pass",
+                       "TC-F02-04":  "pass",
+                       "TC-F02-05":  "pass",
+                       "TC-F12-06":  "pass",
+                       "TC-F11-01":  "pass",
+                       "TC-F11-03":  "pass",
+                       "TC-F11-02":  "pass",
+                       "TC-F12-02":  "pass",
+                       "TC-F12-03":  "pass",
+                       "TC-F12-04":  "pass",
+                       "TC-F12-01":  "pass",
+                       "TC-F12-05":  "pass",
+                       "TC-F16-01":  "pass",
+                       "TC-F10-02":  "pass",
+                       "TC-F15-01":  "pass",
+                       "TC-F10-07":  "pass",
+                       "TC-F20-01":  "pass",
+                       "TC-F13-03":  "pass",
+                       "TC-F10-05":  "pass",
+                       "TC-F13-04":  "pass",
+                       "TC-F09-02":  "pass",
+                       "TC-F09-04":  "pass",
+                       "TC-F19-01":  "pass",
+                       "TC-F13-01":  "pass",
+                       "TC-F10-03":  "pass",
+                       "TC-F09-03":  "pass",
+                       "TC-F09-01":  "pass",
+                       "TC-F14-01":  "pass",
+                       "TC-F18-02":  "pass",
+                       "TC-F13-02":  "pass",
+                       "TC-F10-04":  "pass",
+                       "TC-F13-05":  "pass",
+                       "TC-F18-01":  "pass",
+                       "TC-F10-06":  "pass",
+                       "TC-F17-01":  "pass",
+                       "TC-F10-01":  "pass",
+                       "TC-F09-05":  "pass",
+                       "TC-F05-01":  "pass",
+                       "TC-F05-04":  "pass",
+                       "TC-F03-01":  "pass",
+                       "TC-F03-02":  "pass",
+                       "TC-F05-02":  "pass",
+                       "TC-F04-01":  "pass",
+                       "IT-DP-NEG-02":  "fail"
+                   }
+}

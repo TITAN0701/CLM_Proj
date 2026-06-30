@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QA Framework Config",
+  "type": "object",
+  "required": ["project", "env", "paths", "knowledge", "automation", "reports"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": ["name", "code"],
+      "properties": {
+        "name": { "type": "string" },
+        "code": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "language": { "type": "string", "default": "zh-TW" }
+      }
+    },
+    "env": {
+      "type": "object",
+      "required": ["sitUrl"],
+      "properties": {
+        "sitUrl": { "type": "string", "format": "uri" },
+        "apiBaseUrl": { "type": "string" },
+        "testEmail": { "type": "string" },
+        "ciSecrets": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "properties": {
+        "pmInbox": { "type": "string" },
+        "specs": { "type": "string" },
+        "knowledge": { "type": "string" },
+        "automationE2E": { "type": "string" },
+        "automationAPI": { "type": "string" },
+        "snapshots": { "type": "string" },
+        "allureResults": { "type": "string" },
+        "generatedQA": { "type": "string" },
+        "generatedPM": { "type": "string" }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "properties": {
+        "defaultFramework": { "type": "string", "enum": ["cypress", "playwright"] },
+        "apiFramework": { "type": "string", "enum": ["pytest", "jest"] },
+        "selectorPolicy": { "type": "string" },
+        "skipMarker": { "type": "string" }
+      }
+    },
+    "reports": {
+      "type": "object",
+      "properties": {
+        "pmLanguage": { "type": "string" },
+        "statusValues": { "type": "array", "items": { "type": "string" } },
+        "exportDocx": { "type": "boolean" }
+      }
+    }
+  }
+}

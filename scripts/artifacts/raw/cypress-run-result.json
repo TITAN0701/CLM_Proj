@@ -1,0 +1,386 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-06-25T03:58:03.221Z",
+    "end": "2026-06-25T03:59:38.851Z",
+    "duration": 95630
+  },
+  "tests": [
+    {
+      "title": "TC-F01-01: 儀表板統計卡正確顯示",
+      "fullTitle": "儀表板 TC-F01-01: 儀表板統計卡正確顯示",
+      "duration": 370,
+      "currentRetry": 1,
+      "err": {
+        "message": "`cy.visit()` failed trying to load:\n\n/login\n\nWe failed looking for this file at the path:\n\n/Users/suppo/Desktop/RXCLM/login\n\nThe internal Cypress web server responded with:\n\n  > 404: Not Found\n\nThis error occurred while creating the session. Because the session setup failed, we failed the test.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.",
+        "name": "CypressError",
+        "stack": "CypressError: `cy.visit()` failed trying to load:\n\n/login\n\nWe failed looking for this file at the path:\n\n/Users/suppo/Desktop/RXCLM/login\n\nThe internal Cypress web server responded with:\n\n  > 404: Not Found\n\nThis error occurred while creating the session. Because the session setup failed, we failed the test.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.\n    at <unknown> (http://localhost:56032/__cypress/runner/cypress_runner.js:131591:76)\n    at visitFailedByErr (http://localhost:56032/__cypress/runner/cypress_runner.js:131006:12)\n    at <unknown> (http://localhost:56032/__cypress/runner/cypress_runner.js:131574:13)\n    at tryCatcher (http://localhost:56032/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (http://localhost:56032/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (http://localhost:56032/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (http://localhost:56032/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (http://localhost:56032/__cypress/runner/cypress_runner.js:1720:18)\n    at _drainQueueStep (http://localhost:56032/__cypress/runner/cypress_runner.js:2430:12)\n    at _drainQueue (http://localhost:56032/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (http://localhost:56032/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (http://localhost:56032/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at cy.session.cacheAcrossSpecs [as setup] (webpack://qaai-spec-driven-automation/./automation/e2e/support/commands.ts:11:0)",
+        "parsedStack": [
+          {
+            "message": "CypressError: `cy.visit()` failed trying to load:",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "/login",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "We failed looking for this file at the path:",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "/Users/suppo/Desktop/RXCLM/login",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "The internal Cypress web server responded with:",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "> 404: Not Found",
+            "whitespace": "  "
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "This error occurred while creating the session. Because the session setup failed, we failed the test.",
+            "whitespace": ""
+          },
+          {
+            "function": "<unknown>",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 131591,
+            "column": 76,
+            "whitespace": "    "
+          },
+          {
+            "function": "visitFailedByErr",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 131006,
+            "column": 12,
+            "whitespace": "    "
+          },
+          {
+            "function": "<unknown>",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 131574,
+            "column": 13,
+            "whitespace": "    "
+          },
+          {
+            "function": "tryCatcher",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1830,
+            "column": 23,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromiseFromHandler",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1542,
+            "column": 31,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromise",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1599,
+            "column": 18,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromise0",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1644,
+            "column": 10,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromises",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1720,
+            "column": 18,
+            "whitespace": "    "
+          },
+          {
+            "function": "_drainQueueStep",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2430,
+            "column": 12,
+            "whitespace": "    "
+          },
+          {
+            "function": "_drainQueue",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2423,
+            "column": 9,
+            "whitespace": "    "
+          },
+          {
+            "function": "Async._drainQueues",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2439,
+            "column": 5,
+            "whitespace": "    "
+          },
+          {
+            "function": "Async.drainQueues",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2309,
+            "column": 14,
+            "whitespace": "    "
+          },
+          {
+            "message": "From Your Spec Code:",
+            "whitespace": ""
+          },
+          {
+            "function": "cy.session.cacheAcrossSpecs [as setup]",
+            "fileUrl": "http://localhost:56032/__cypress/tests?p=automation\\e2e\\support\\e2e.ts",
+            "originalFile": "webpack://qaai-spec-driven-automation/./automation/e2e/support/commands.ts",
+            "relativeFile": "automation/e2e/support/commands.ts",
+            "absoluteFile": "C:\\Users\\suppo\\Desktop\\RXCLM/automation/e2e/support/commands.ts",
+            "line": 11,
+            "column": 0,
+            "whitespace": "    "
+          }
+        ],
+        "codeFrame": {
+          "line": 11,
+          "column": 1,
+          "originalFile": "automation/e2e/support/commands.ts",
+          "relativeFile": "Desktop/RXCLM/automation/e2e/support/commands.ts",
+          "absoluteFile": "C:\\Users\\suppo\\Desktop\\RXCLM/automation/e2e/support/commands.ts",
+          "frame": "   9 | Cypress.Commands.add('loginAsAdmin', () => {\n  10 |     cy.session('adminSession', () => {\n> 11 |         cy.visit('/login');\n     | ^\n  12 |         cy.get('input[type=\"password\"]', { timeout: 15000 }).should('be.visible');\n  13 |         const email = Cypress.env('TEST_USER_EMAIL') || 'admin@local';\n  14 |         const password = Cypress.env('TEST_USER_PASSWORD') || 'testtest';",
+          "language": "ts"
+        }
+      }
+    }
+  ],
+  "pending": [],
+  "failures": [
+    {
+      "title": "\"before each\" hook for \"TC-F01-01: 儀表板統計卡正確顯示\"",
+      "fullTitle": "儀表板 \"before each\" hook for \"TC-F01-01: 儀表板統計卡正確顯示\"",
+      "duration": 60034,
+      "currentRetry": 1,
+      "err": {
+        "message": "`cy.visit()` failed trying to load:\n\n/login\n\nWe failed looking for this file at the path:\n\n/Users/suppo/Desktop/RXCLM/login\n\nThe internal Cypress web server responded with:\n\n  > 404: Not Found\n\nThis error occurred while creating the session. Because the session setup failed, we failed the test.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.",
+        "name": "CypressError",
+        "stack": "CypressError: `cy.visit()` failed trying to load:\n\n/login\n\nWe failed looking for this file at the path:\n\n/Users/suppo/Desktop/RXCLM/login\n\nThe internal Cypress web server responded with:\n\n  > 404: Not Found\n\nThis error occurred while creating the session. Because the session setup failed, we failed the test.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.\n    at <unknown> (http://localhost:56032/__cypress/runner/cypress_runner.js:131591:76)\n    at visitFailedByErr (http://localhost:56032/__cypress/runner/cypress_runner.js:131006:12)\n    at <unknown> (http://localhost:56032/__cypress/runner/cypress_runner.js:131574:13)\n    at tryCatcher (http://localhost:56032/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (http://localhost:56032/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (http://localhost:56032/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (http://localhost:56032/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (http://localhost:56032/__cypress/runner/cypress_runner.js:1720:18)\n    at _drainQueueStep (http://localhost:56032/__cypress/runner/cypress_runner.js:2430:12)\n    at _drainQueue (http://localhost:56032/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (http://localhost:56032/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (http://localhost:56032/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at cy.session.cacheAcrossSpecs [as setup] (webpack://qaai-spec-driven-automation/./automation/e2e/support/commands.ts:11:0)",
+        "parsedStack": [
+          {
+            "message": "CypressError: `cy.visit()` failed trying to load:",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "/login",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "We failed looking for this file at the path:",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "/Users/suppo/Desktop/RXCLM/login",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "The internal Cypress web server responded with:",
+            "whitespace": ""
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "> 404: Not Found",
+            "whitespace": "  "
+          },
+          {
+            "message": "",
+            "whitespace": ""
+          },
+          {
+            "message": "This error occurred while creating the session. Because the session setup failed, we failed the test.",
+            "whitespace": ""
+          },
+          {
+            "function": "<unknown>",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 131591,
+            "column": 76,
+            "whitespace": "    "
+          },
+          {
+            "function": "visitFailedByErr",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 131006,
+            "column": 12,
+            "whitespace": "    "
+          },
+          {
+            "function": "<unknown>",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 131574,
+            "column": 13,
+            "whitespace": "    "
+          },
+          {
+            "function": "tryCatcher",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1830,
+            "column": 23,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromiseFromHandler",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1542,
+            "column": 31,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromise",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1599,
+            "column": 18,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromise0",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1644,
+            "column": 10,
+            "whitespace": "    "
+          },
+          {
+            "function": "Promise._settlePromises",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 1720,
+            "column": 18,
+            "whitespace": "    "
+          },
+          {
+            "function": "_drainQueueStep",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2430,
+            "column": 12,
+            "whitespace": "    "
+          },
+          {
+            "function": "_drainQueue",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2423,
+            "column": 9,
+            "whitespace": "    "
+          },
+          {
+            "function": "Async._drainQueues",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2439,
+            "column": 5,
+            "whitespace": "    "
+          },
+          {
+            "function": "Async.drainQueues",
+            "fileUrl": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "originalFile": "http://localhost:56032/__cypress/runner/cypress_runner.js",
+            "line": 2309,
+            "column": 14,
+            "whitespace": "    "
+          },
+          {
+            "message": "From Your Spec Code:",
+            "whitespace": ""
+          },
+          {
+            "function": "cy.session.cacheAcrossSpecs [as setup]",
+            "fileUrl": "http://localhost:56032/__cypress/tests?p=automation\\e2e\\support\\e2e.ts",
+            "originalFile": "webpack://qaai-spec-driven-automation/./automation/e2e/support/commands.ts",
+            "relativeFile": "automation/e2e/support/commands.ts",
+            "absoluteFile": "C:\\Users\\suppo\\Desktop\\RXCLM/automation/e2e/support/commands.ts",
+            "line": 11,
+            "column": 0,
+            "whitespace": "    "
+          }
+        ],
+        "codeFrame": {
+          "line": 11,
+          "column": 1,
+          "originalFile": "automation/e2e/support/commands.ts",
+          "relativeFile": "Desktop/RXCLM/automation/e2e/support/commands.ts",
+          "absoluteFile": "C:\\Users\\suppo\\Desktop\\RXCLM/automation/e2e/support/commands.ts",
+          "frame": "   9 | Cypress.Commands.add('loginAsAdmin', () => {\n  10 |     cy.session('adminSession', () => {\n> 11 |         cy.visit('/login');\n     | ^\n  12 |         cy.get('input[type=\"password\"]', { timeout: 15000 }).should('be.visible');\n  13 |         const email = Cypress.env('TEST_USER_EMAIL') || 'admin@local';\n  14 |         const password = Cypress.env('TEST_USER_PASSWORD') || 'testtest';",
+          "language": "ts"
+        }
+      }
+    }
+  ],
+  "passes": []
+}

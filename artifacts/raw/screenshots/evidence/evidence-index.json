@@ -1,0 +1,541 @@
+{
+  "generated": "2026-06-18",
+  "pipeline_id": "PIPE-RXCLM-20260618",
+  "evidence": [
+    {
+      "tc_id": "TC-F01-01",
+      "sc_ref": "",
+      "feature": "儀表板",
+      "page": "",
+      "action": "截圖：儀表板 TC-F01-01 儀表板統計卡正確顯示",
+      "status": "captured",
+      "screenshot": "../cypress/dashboard.cy.ts/儀表板 TC-F01-01 儀表板統計卡正確顯示.png"
+    },
+    {
+      "tc_id": "TC-F02-01",
+      "sc_ref": "",
+      "feature": "憑證列表",
+      "page": "",
+      "action": "截圖：憑證列表 TC-F02-01 預設顯示「依網域」頁籤",
+      "status": "captured",
+      "screenshot": "../cypress/certs-list.cy.ts/憑證列表 TC-F02-01 預設顯示「依網域」頁籤.png"
+    },
+    {
+      "tc_id": "TC-F03-01",
+      "sc_ref": "",
+      "feature": "網域詳細",
+      "page": "",
+      "action": "截圖：網域詳細 TC-F03-01 顯示現役憑證完整資訊",
+      "status": "captured",
+      "screenshot": "../cypress/certs-new.cy.ts/網域詳細 TC-F03-01 顯示現役憑證完整資訊.png"
+    },
+    {
+      "tc_id": "TC-F04-01",
+      "sc_ref": "S04-01",
+      "feature": "Order 詳細",
+      "page": "Order 詳細（/certs/letsencrypt/acc_legacy_letsencrypt/ord_a9ac2fe632e74090）",
+      "action": "顯示 ISSUED Order 基本資訊",
+      "status": "captured",
+      "screenshot": "../smoke/04-order-detail.png",
+      "quality": "ok",
+      "quality_note": ""
+    },
+    {
+      "tc_id": "TC-F05-01",
+      "sc_ref": "",
+      "feature": "申請新憑證",
+      "page": "",
+      "action": "截圖：申請新憑證 TC-F05-01 未填 CN 時送出按鈕 disabled",
+      "status": "captured",
+      "screenshot": "../cypress/certs-new.cy.ts/申請新憑證 TC-F05-01 未填 CN 時送出按鈕 disabled.png"
+    },
+    {
+      "tc_id": "TC-F06-01",
+      "sc_ref": "S06-01",
+      "feature": "匯入既有憑證",
+      "page": "匯入憑證（/certs/import）",
+      "action": "頁面載入確認，PEM 輸入區域顯示",
+      "status": "captured",
+      "screenshot": "../smoke/06-certs-import.png",
+      "quality": "ok",
+      "quality_note": ""
+    },
+    {
+      "tc_id": "TC-F07-01",
+      "sc_ref": "",
+      "feature": "ACME 帳號",
+      "page": "",
+      "action": "截圖：ACME 帳號 TC-F07-01 帳號列表顯示所有 ACME 帳號",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/ACME 帳號 TC-F07-01 帳號列表顯示所有 ACME 帳號.png"
+    },
+    {
+      "tc_id": "TC-F08-01",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-01 Account 詳細頁顯示完整資訊",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-01 Account 詳細頁顯示完整資訊.png"
+    },
+    {
+      "tc_id": "TC-F09-01",
+      "sc_ref": "",
+      "feature": "CA 機構",
+      "page": "",
+      "action": "截圖：CA 機構管理 TC-F09-01 CA 機構列表正確顯示",
+      "status": "captured",
+      "screenshot": "../cypress/admin-ca-providers.cy.ts/CA 機構管理 TC-F09-01 CA 機構列表正確顯示.png"
+    },
+    {
+      "tc_id": "TC-F12-01",
+      "sc_ref": "",
+      "feature": "User 管理",
+      "page": "",
+      "action": "截圖：User 管理 TC-F12-01 User 清單顯示與篩選欄位",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/User 管理 TC-F12-01 User 清單顯示與篩選欄位.png"
+    },
+    {
+      "tc_id": "TC-F11-01",
+      "sc_ref": "",
+      "feature": "admin-users-groups.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F11-01 Group清單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/TC-F11-01 Group清單.png"
+    },
+    {
+      "tc_id": "TC-F13-01",
+      "sc_ref": "",
+      "feature": "admin-endpoints.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F13-01 Endpoint清單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-endpoints.cy.ts/TC-F13-01 Endpoint清單.png"
+    },
+    {
+      "tc_id": "TC-F10-01",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-01 清單顯示",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-01 清單顯示.png"
+    },
+    {
+      "tc_id": "TC-F14-01",
+      "sc_ref": "",
+      "feature": "授權管理",
+      "page": "",
+      "action": "截圖：授權管理 TC-F14-01 授權狀態顯示",
+      "status": "captured",
+      "screenshot": "../cypress/admin-license.cy.ts/授權管理 TC-F14-01 授權狀態顯示.png"
+    },
+    {
+      "tc_id": "TC-F15-01",
+      "sc_ref": "",
+      "feature": "部署核准",
+      "page": "",
+      "action": "截圖：部署核准 TC-F15-01 待審清單顯示三類任務",
+      "status": "captured",
+      "screenshot": "../cypress/admin-approvals.cy.ts/部署核准 TC-F15-01 待審清單顯示三類任務.png"
+    },
+    {
+      "tc_id": "TC-F16-01",
+      "sc_ref": "",
+      "feature": "憑證掃描",
+      "page": "",
+      "action": "截圖：憑證掃描 TC-F16-01 掃描頁面顯示與觸發掃描",
+      "status": "captured",
+      "screenshot": "../cypress/admin-scan-policies.cy.ts/憑證掃描 TC-F16-01 掃描頁面顯示與觸發掃描.png"
+    },
+    {
+      "tc_id": "TC-F17-01",
+      "sc_ref": "",
+      "feature": "合規政策",
+      "page": "",
+      "action": "截圖：合規政策 TC-F17-01 合規政策清單顯示",
+      "status": "captured",
+      "screenshot": "../cypress/admin-scan-policies.cy.ts/合規政策 TC-F17-01 合規政策清單顯示.png"
+    },
+    {
+      "tc_id": "TC-F18-01",
+      "sc_ref": "",
+      "feature": "稽核紀錄",
+      "page": "",
+      "action": "截圖：稽核紀錄 TC-F18-01 稽核紀錄顯示操作歷史",
+      "status": "captured",
+      "screenshot": "../cypress/audit-settings.cy.ts/稽核紀錄 TC-F18-01 稽核紀錄顯示操作歷史.png"
+    },
+    {
+      "tc_id": "TC-F19-01",
+      "sc_ref": "",
+      "feature": "系統設定",
+      "page": "",
+      "action": "截圖：系統設定 TC-F19-01 系統設定頁面顯示",
+      "status": "captured",
+      "screenshot": "../cypress/audit-settings.cy.ts/系統設定 TC-F19-01 系統設定頁面顯示.png"
+    },
+    {
+      "tc_id": "TC-F20-01",
+      "sc_ref": "",
+      "feature": "我的帳號",
+      "page": "",
+      "action": "截圖：我的帳號 TC-F20-01 個人資料顯示",
+      "status": "captured",
+      "screenshot": "../cypress/me.cy.ts/我的帳號 TC-F20-01 個人資料顯示.png"
+    },
+    {
+      "tc_id": "TC-F08-04",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-04 測試新增RXCA帳號（已知 SIT 環境 RXCA 連線異常，預期顯示 Network error）",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-04 測試新增RXCA帳號（已知 SIT 環境 RXCA 連線異常，預期顯示 Network error）.png"
+    },
+    {
+      "tc_id": "TC-F08-02",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-02 測試新增、編輯、刪除帳號，並檢視是否能看見正確提示訊息",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-02 測試新增、編輯、刪除帳號，並檢視是否能看見正確提示訊息.png"
+    },
+    {
+      "tc_id": "TC-F08-03",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-03 測試轉移負責人帳號功能，並檢查是否能轉移不同的權限",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-03 測試轉移負責人帳號功能，並檢查是否能轉移不同的權限.png"
+    },
+    {
+      "tc_id": "TC-F08-05",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-05 測試新增TWCA EAB，先測試帶入假資料是否會報錯",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-05 測試新增TWCA EAB，先測試帶入假資料是否會報錯.png"
+    },
+    {
+      "tc_id": "TC-F08-06",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-06 TWCA 帳號詳細頁顯示完整資訊",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-06 TWCA 帳號詳細頁顯示完整資訊.png"
+    },
+    {
+      "tc_id": "TC-F08-07",
+      "sc_ref": "",
+      "feature": "Account 詳細",
+      "page": "",
+      "action": "截圖：Account 詳細 TC-F08-07 測試新增TWCA EAB，檢查欄位為空白時的錯誤訊息",
+      "status": "captured",
+      "screenshot": "../cypress/accounts.cy.ts/Account 詳細 TC-F08-07 測試新增TWCA EAB，檢查欄位為空白時的錯誤訊息.png"
+    },
+    {
+      "tc_id": "TC-F06-03",
+      "sc_ref": "",
+      "feature": "匯入既有憑證",
+      "page": "",
+      "action": "截圖：匯入既有憑證 TC-F06-03 無效 PEM 格式顯示錯誤",
+      "status": "captured",
+      "screenshot": "../cypress/certs-new.cy.ts/匯入既有憑證 TC-F06-03 無效 PEM 格式顯示錯誤.png"
+    },
+    {
+      "tc_id": "TC-F05-02",
+      "sc_ref": "",
+      "feature": "申請新憑證",
+      "page": "",
+      "action": "截圖：申請新憑證 TC-F05-02 切換 CA 時 Account 選項更新",
+      "status": "captured",
+      "screenshot": "../cypress/certs-new.cy.ts/申請新憑證 TC-F05-02 切換 CA 時 Account 選項更新.png"
+    },
+    {
+      "tc_id": "TC-F05-04",
+      "sc_ref": "",
+      "feature": "申請新憑證",
+      "page": "",
+      "action": "截圖：申請新憑證 TC-F05-04 取消申請不建立 Order",
+      "status": "captured",
+      "screenshot": "../cypress/certs-new.cy.ts/申請新憑證 TC-F05-04 取消申請不建立 Order.png"
+    },
+    {
+      "tc_id": "TC-F03-02",
+      "sc_ref": "",
+      "feature": "網域詳細",
+      "page": "",
+      "action": "截圖：網域詳細 TC-F03-02 自動續簽設定區塊顯示",
+      "status": "captured",
+      "screenshot": "../cypress/certs-new.cy.ts/網域詳細 TC-F03-02 自動續簽設定區塊顯示.png"
+    },
+    {
+      "tc_id": "TC-F09-02",
+      "sc_ref": "",
+      "feature": "CA 機構",
+      "page": "",
+      "action": "截圖：CA 機構管理 TC-F09-02 新增 CA 機構表單開啟與取消",
+      "status": "captured",
+      "screenshot": "../cypress/admin-ca-providers.cy.ts/CA 機構管理 TC-F09-02 新增 CA 機構表單開啟與取消.png"
+    },
+    {
+      "tc_id": "TC-F09-03",
+      "sc_ref": "",
+      "feature": "CA 機構",
+      "page": "",
+      "action": "截圖：CA 機構管理 TC-F09-03 編輯 CA 機構表單開啟與取消",
+      "status": "captured",
+      "screenshot": "../cypress/admin-ca-providers.cy.ts/CA 機構管理 TC-F09-03 編輯 CA 機構表單開啟與取消.png"
+    },
+    {
+      "tc_id": "TC-F09-04",
+      "sc_ref": "",
+      "feature": "CA 機構",
+      "page": "",
+      "action": "截圖：CA 機構管理 TC-F09-04 新增 CA 機構並驗證列表 會實際寫入資料，需隔離環境",
+      "status": "captured",
+      "screenshot": "../cypress/admin-ca-providers.cy.ts/CA 機構管理 TC-F09-04 新增 CA 機構並驗證列表 會實際寫入資料，需隔離環境.png"
+    },
+    {
+      "tc_id": "TC-F09-05",
+      "sc_ref": "",
+      "feature": "CA 機構",
+      "page": "",
+      "action": "截圖：CA 機構管理 TC-F09-05 新增後刪除 CA 機構（完整流程）",
+      "status": "captured",
+      "screenshot": "../cypress/admin-ca-providers.cy.ts/CA 機構管理 TC-F09-05 新增後刪除 CA 機構（完整流程）.png"
+    },
+    {
+      "tc_id": "TC-F10-02",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-02 新增成功",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-02 新增成功.png"
+    },
+    {
+      "tc_id": "TC-F10-03",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-03 儲存啟用",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-03 儲存啟用.png"
+    },
+    {
+      "tc_id": "TC-F10-04",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-04 測試連線成功",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-04 測試連線成功.png"
+    },
+    {
+      "tc_id": "TC-F10-05",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-05 測試連線失敗",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-05 測試連線失敗.png"
+    },
+    {
+      "tc_id": "TC-F10-07",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-07 測試連線成功",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-07 測試連線成功.png"
+    },
+    {
+      "tc_id": "TC-F10-06",
+      "sc_ref": "",
+      "feature": "admin-dns-providers.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F10-06 AWS欄位顯示",
+      "status": "captured",
+      "screenshot": "../cypress/admin-dns-providers.cy.ts/TC-F10-06 AWS欄位顯示.png"
+    },
+    {
+      "tc_id": "TC-F13-02",
+      "sc_ref": "",
+      "feature": "admin-endpoints.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F13-02 新增表單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-endpoints.cy.ts/TC-F13-02 新增表單.png"
+    },
+    {
+      "tc_id": "TC-F13-03",
+      "sc_ref": "",
+      "feature": "admin-endpoints.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F13-03 新增表單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-endpoints.cy.ts/TC-F13-03 新增表單.png"
+    },
+    {
+      "tc_id": "TC-F13-04",
+      "sc_ref": "",
+      "feature": "admin-endpoints.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F13-04 新增表單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-endpoints.cy.ts/TC-F13-04 新增表單.png"
+    },
+    {
+      "tc_id": "TC-F13-05",
+      "sc_ref": "",
+      "feature": "admin-endpoints.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F13-05 新增表單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-endpoints.cy.ts/TC-F13-05 新增表單.png"
+    },
+    {
+      "tc_id": "TC-F11-02",
+      "sc_ref": "",
+      "feature": "admin-users-groups.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F11-02 新增表單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/TC-F11-02 新增表單.png"
+    },
+    {
+      "tc_id": "TC-F11-03",
+      "sc_ref": "",
+      "feature": "admin-users-groups.cy.ts",
+      "page": "",
+      "action": "截圖：TC-F11-03 編輯表單",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/TC-F11-03 編輯表單.png"
+    },
+    {
+      "tc_id": "TC-F12-02",
+      "sc_ref": "",
+      "feature": "User 管理",
+      "page": "",
+      "action": "截圖：User 管理 TC-F12-02 新增 User（自建自刪）",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/User 管理 TC-F12-02 新增 User（自建自刪）.png"
+    },
+    {
+      "tc_id": "TC-F12-03",
+      "sc_ref": "",
+      "feature": "User 管理",
+      "page": "",
+      "action": "截圖：User 管理 TC-F12-03 搜尋 User",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/User 管理 TC-F12-03 搜尋 User.png"
+    },
+    {
+      "tc_id": "TC-F12-04",
+      "sc_ref": "",
+      "feature": "User 管理",
+      "page": "",
+      "action": "截圖：User 管理 TC-F12-04 Role 篩選",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/User 管理 TC-F12-04 Role 篩選.png"
+    },
+    {
+      "tc_id": "TC-F12-05",
+      "sc_ref": "",
+      "feature": "User 管理",
+      "page": "",
+      "action": "截圖：User 管理 TC-F12-05 編輯 User 顯示名稱（自建自刪）",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/User 管理 TC-F12-05 編輯 User 顯示名稱（自建自刪）.png"
+    },
+    {
+      "tc_id": "TC-F12-06",
+      "sc_ref": "",
+      "feature": "User 管理",
+      "page": "",
+      "action": "截圖：User 管理 TC-F12-06 強登出 User（確認 dialog 出現後取消）",
+      "status": "captured",
+      "screenshot": "../cypress/admin-users-groups.cy.ts/User 管理 TC-F12-06 強登出 User（確認 dialog 出現後取消）.png"
+    },
+    {
+      "tc_id": "TC-F18-02",
+      "sc_ref": "",
+      "feature": "稽核紀錄",
+      "page": "",
+      "action": "截圖：稽核紀錄 TC-F18-02 稽核紀錄 Excel 匯出",
+      "status": "captured",
+      "screenshot": "../cypress/audit-settings.cy.ts/稽核紀錄 TC-F18-02 稽核紀錄 Excel 匯出.png"
+    },
+    {
+      "tc_id": "TC-F02-02",
+      "sc_ref": "",
+      "feature": "憑證列表",
+      "page": "",
+      "action": "截圖：憑證列表 TC-F02-02 切換「所有訂單」頁籤",
+      "status": "captured",
+      "screenshot": "../cypress/certs-list.cy.ts/憑證列表 TC-F02-02 切換「所有訂單」頁籤.png"
+    },
+    {
+      "tc_id": "TC-F02-03",
+      "sc_ref": "",
+      "feature": "憑證列表",
+      "page": "",
+      "action": "截圖：憑證列表 TC-F02-03 搜尋功能正確過濾結果",
+      "status": "captured",
+      "screenshot": "../cypress/certs-list.cy.ts/憑證列表 TC-F02-03 搜尋功能正確過濾結果.png"
+    },
+    {
+      "tc_id": "TC-F02-04",
+      "sc_ref": "",
+      "feature": "憑證列表",
+      "page": "",
+      "action": "截圖：憑證列表 TC-F02-04 30天內到期快篩",
+      "status": "captured",
+      "screenshot": "../cypress/certs-list.cy.ts/憑證列表 TC-F02-04 30天內到期快篩.png"
+    },
+    {
+      "tc_id": "TC-F02-05",
+      "sc_ref": "",
+      "feature": "憑證列表",
+      "page": "",
+      "action": "截圖：憑證列表 TC-F02-05 Excel 下載觸發檔案下載",
+      "status": "captured",
+      "screenshot": "../cypress/certs-list.cy.ts/憑證列表 TC-F02-05 Excel 下載觸發檔案下載.png"
+    },
+    {
+      "tc_id": "TC-F01-02",
+      "sc_ref": "",
+      "feature": "儀表板",
+      "page": "",
+      "action": "截圖：儀表板 TC-F01-02 統計卡點擊跳轉至篩選列表",
+      "status": "captured",
+      "screenshot": "../cypress/dashboard.cy.ts/儀表板 TC-F01-02 統計卡點擊跳轉至篩選列表.png"
+    },
+    {
+      "tc_id": "TC-F01-03",
+      "sc_ref": "",
+      "feature": "儀表板",
+      "page": "",
+      "action": "截圖：儀表板 TC-F01-03 快速操作連結導向正確頁面",
+      "status": "captured",
+      "screenshot": "../cypress/dashboard.cy.ts/儀表板 TC-F01-03 快速操作連結導向正確頁面.png"
+    },
+    {
+      "tc_id": "TC-F01-04",
+      "sc_ref": "",
+      "feature": "儀表板",
+      "page": "",
+      "action": "截圖：儀表板 TC-F01-04 重新整理更新資料時間",
+      "status": "captured",
+      "screenshot": "../cypress/dashboard.cy.ts/儀表板 TC-F01-04 重新整理更新資料時間.png"
+    }
+  ]
+}

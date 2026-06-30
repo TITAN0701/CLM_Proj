@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QA Test Cases",
+  "type": "object",
+  "required": ["feature", "source_spec", "test_cases"],
+  "properties": {
+    "feature": {
+      "type": "string"
+    },
+    "source_spec": {
+      "type": "string"
+    },
+    "test_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "type", "priority", "steps", "expected"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^TC-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"
+          },
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^SC-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["e2e", "api", "unit", "integration", "manual"]
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "test_data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "automation_candidate": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

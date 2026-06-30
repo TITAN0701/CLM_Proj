@@ -1,0 +1,138 @@
+name: QA Automation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate SDD workspace
+        shell: pwsh
+        run: ./scripts/validate-sdd.ps1
+
+      - name: Validate test cases
+        run: python scripts/validate-testcases.py
+
+      - name: Validate execution results
+        run: python scripts/validate-execution-results.py --check
+
+  live-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: validate
+    if: >
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      github.event_name == 'workflow_dispatch'
+    environment: staging
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check QA automation environment
+        shell: pwsh
+        run: ./scripts/preflight-ci.ps1
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          CYPRESS_TEST_USER_EMAIL: ${{ secrets.CYPRESS_TEST_USER_EMAIL }}
+          CYPRESS_TEST_USER_PASSWORD: ${{ secrets.CYPRESS_TEST_USER_PASSWORD }}
+
+      - name: Run Cypress E2E
+        run: npm run test:e2e
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          CYPRESS_TEST_USER_EMAIL: ${{ secrets.CYPRESS_TEST_USER_EMAIL }}
+          CYPRESS_TEST_USER_PASSWORD: ${{ secrets.CYPRESS_TEST_USER_PASSWORD }}
+
+      - name: Run pytest API
+        run: pytest
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          TEST_USER_EMAIL: ${{ secrets.CYPRESS_TEST_USER_EMAIL }}
+          TEST_USER_PASSWORD: ${{ secrets.CYPRESS_TEST_USER_PASSWORD }}
+
+      - name: Generate Allure report
+        if: always()
+        run: npm run allure:generate
+
+      - name: Refresh QA artifacts
+        if: always()
+        shell: pwsh
+        run: ./scripts/refresh-qa-artifacts.ps1
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: artifacts/generated/allure-report
+
+      - name: Upload raw test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-test-artifacts
+          path: artifacts/raw
+
+      - name: Upload QA report and scenario matrix
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report-and-scenario-matrix
+          path: |
+            artifacts/generated/qa/test-report.md
+            artifacts/generated/qa/scenario-matrix.md
+            artifacts/generated/qa/scenario-matrix.xlsx

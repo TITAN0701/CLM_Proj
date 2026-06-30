@@ -1,0 +1,1674 @@
+[
+  {
+    "id": "TC-F01-01",
+    "feature": "儀表板",
+    "scenario": "S01-01",
+    "title": "儀表板統計卡正確顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 /dashboard",
+      "觀察頁面載入完成"
+    ],
+    "expected": "顯示 6 張統計卡（現役憑證、進行中、30天內到期、7天內到期、已過期、帳號數），數字均 ≥ 0；頁面含「依狀態」與「依 CA」兩張 bar chart",
+    "tags": [
+      "smoke",
+      "dashboard"
+    ],
+    "status": "pending",
+    "sc_ref": "S01-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F01-02",
+    "feature": "儀表板",
+    "scenario": "S01-02",
+    "title": "統計卡點擊跳轉至篩選列表",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "儀表板已載入"
+    ],
+    "steps": [
+      "點擊「現役憑證」統計卡"
+    ],
+    "expected": "跳轉至 /certs 並自動套用 ISSUED 狀態篩選，列表只顯示 ISSUED 憑證",
+    "tags": [
+      "dashboard",
+      "navigation"
+    ],
+    "status": "pending",
+    "sc_ref": "S01-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F01-03",
+    "feature": "儀表板",
+    "scenario": "S01-03",
+    "title": "快速操作連結導向正確頁面",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "儀表板已載入"
+    ],
+    "steps": [
+      "點擊「新申請憑證」快速操作按鈕"
+    ],
+    "expected": "跳轉至 /certs/new",
+    "tags": [
+      "dashboard",
+      "navigation"
+    ],
+    "status": "pending",
+    "sc_ref": "S01-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F01-04",
+    "feature": "儀表板",
+    "scenario": "S01-04",
+    "title": "重新整理更新資料時間",
+    "priority": "P3",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "儀表板已載入"
+    ],
+    "steps": [
+      "記下當前「資料時間」",
+      "點擊「重新整理」按鈕",
+      "等待頁面重新載入"
+    ],
+    "expected": "「資料時間」更新為當前時間（不早於點擊前時間）",
+    "tags": [
+      "dashboard"
+    ],
+    "status": "pending",
+    "sc_ref": "S01-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F02-01",
+    "feature": "憑證列表",
+    "scenario": "S02-01",
+    "title": "預設顯示「依網域」頁籤",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "導航至 /certs"
+    ],
+    "expected": "預設選中「依網域」頁籤；表格顯示 Common Name 聚合資料，欄位包含 Common Name、狀態、有效到、剩餘天數、申請次數、CA、Group、負責人",
+    "tags": [
+      "smoke",
+      "certs-list"
+    ],
+    "status": "pending",
+    "sc_ref": "S02-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F02-02",
+    "feature": "憑證列表",
+    "scenario": "S02-02",
+    "title": "切換「所有訂單」頁籤",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在憑證列表頁"
+    ],
+    "steps": [
+      "點擊「所有訂單 (含歷史)」頁籤"
+    ],
+    "expected": "表格切換為每筆 Order 一行，顯示包含歷史訂單的完整列表",
+    "tags": [
+      "certs-list"
+    ],
+    "status": "pending",
+    "sc_ref": "S02-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F02-03",
+    "feature": "憑證列表",
+    "scenario": "S02-03",
+    "title": "搜尋功能正確過濾結果",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在憑證列表頁"
+    ],
+    "steps": [
+      "在搜尋框輸入 'api-test2'",
+      "點擊「查詢」"
+    ],
+    "expected": "結果只顯示 Common Name 包含 'api-test2' 的憑證；不包含 'api-test2' 的憑證不應出現",
+    "tags": [
+      "certs-list",
+      "search"
+    ],
+    "status": "pending",
+    "sc_ref": "S02-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F02-04",
+    "feature": "憑證列表",
+    "scenario": "S02-04",
+    "title": "30天內到期快篩",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在憑證列表頁"
+    ],
+    "steps": [
+      "點擊「30 天內到期」快篩按鈕"
+    ],
+    "expected": "只顯示剩餘天數 ≤ 30 的憑證；或顯示空列表（若無符合條件）",
+    "tags": [
+      "certs-list",
+      "filter"
+    ],
+    "status": "pending",
+    "sc_ref": "S02-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F02-05",
+    "feature": "憑證列表",
+    "scenario": "S02-05",
+    "title": "Excel 下載觸發檔案下載",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在憑證列表頁"
+    ],
+    "steps": [
+      "點擊「Excel 下載」按鈕"
+    ],
+    "expected": "觸發 .xlsx 檔案下載，檔案不為空",
+    "tags": [
+      "certs-list",
+      "export"
+    ],
+    "status": "pending",
+    "sc_ref": "S02-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F03-01",
+    "feature": "網域詳細",
+    "scenario": "S03-01",
+    "title": "顯示現役憑證完整資訊",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入",
+      "存在 ISSUED 狀態的網域 api-test2.ruenxininfo.com.tw"
+    ],
+    "steps": [
+      "導航至 /certs/domain/api-test2.ruenxininfo.com.tw"
+    ],
+    "expected": "顯示：當前 Order ID（ord_xxx）、Serial number、有效到日期、CA/Account、負責人；「更新憑證 (Renew)」按鈕可點擊",
+    "tags": [
+      "smoke",
+      "domain-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S03-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F03-02",
+    "feature": "網域詳細",
+    "scenario": "S03-02",
+    "title": "自動續簽設定區塊顯示",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在網域詳細頁"
+    ],
+    "steps": [
+      "查看「自動續簽」區塊"
+    ],
+    "expected": "顯示啟用狀態、續簽門檻天數、續完自動部署（啟用/停用）、最後嘗試時間",
+    "tags": [
+      "domain-detail",
+      "auto-renew"
+    ],
+    "status": "pending",
+    "sc_ref": "S03-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F03-03",
+    "feature": "網域詳細",
+    "scenario": "S03-03",
+    "title": "編輯自動續簽設定",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入 admin",
+      "在網域詳細頁"
+    ],
+    "steps": [
+      "點擊自動續簽區塊的「編輯」按鈕",
+      "修改續簽門檻天數為 45",
+      "儲存設定"
+    ],
+    "expected": "設定儲存後，續簽門檻顯示「到期前 45 天觸發」",
+    "tags": [
+      "domain-detail",
+      "auto-renew"
+    ],
+    "status": "pending",
+    "sc_ref": "S03-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F03-04",
+    "feature": "網域詳細",
+    "scenario": "S03-04",
+    "title": "新增 Tag",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在網域詳細頁"
+    ],
+    "steps": [
+      "在 Tags 區塊選擇 key（如 env）",
+      "輸入 value（如 staging）",
+      "點擊「加 tag」"
+    ],
+    "expected": "新 tag 'env=staging' 出現在 Tags 清單中",
+    "tags": [
+      "domain-detail",
+      "tags"
+    ],
+    "status": "pending",
+    "sc_ref": "S03-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F03-05",
+    "feature": "網域詳細",
+    "scenario": "S03-05",
+    "title": "刪除 Tag",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "網域已有 tag env=prod"
+    ],
+    "steps": [
+      "點擊 'env=prod' tag 旁的「×」"
+    ],
+    "expected": "tag 從清單中移除",
+    "tags": [
+      "domain-detail",
+      "tags"
+    ],
+    "status": "pending",
+    "sc_ref": "S03-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F03-06",
+    "feature": "網域詳細",
+    "scenario": "S03-06",
+    "title": "手動更新憑證觸發新 Order",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "網域有 ISSUED 憑證"
+    ],
+    "steps": [
+      "點擊「更新憑證 (Renew)」按鈕",
+      "確認操作"
+    ],
+    "expected": "建立新 Order 並跳轉至該 Order 詳細頁；新 Order 初始狀態為 PENDING 或 READY",
+    "tags": [
+      "domain-detail",
+      "renew"
+    ],
+    "status": "pending",
+    "sc_ref": "S03-06",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F04-01",
+    "feature": "Order 詳細",
+    "scenario": "S04-01",
+    "title": "Order 基本資訊正確顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入",
+      "Order ord_a9ac2fe632e74090 存在"
+    ],
+    "steps": [
+      "導航至 /certs/letsencrypt/acc_legacy_letsencrypt/ord_a9ac2fe632e74090"
+    ],
+    "expected": "顯示 Order ID、狀態（ISSUED）、憑證鏈、CA、Account、建立時間",
+    "tags": [
+      "smoke",
+      "order-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S04-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F05-01",
+    "feature": "申請新憑證",
+    "scenario": "S05-01",
+    "title": "未填 CN 時送出按鈕 disabled",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "導航至 /certs/new",
+      "不填 Common Name",
+      "觀察「建立 order」按鈕狀態"
+    ],
+    "expected": "「建立 order (送 CA 開單)」按鈕維持 disabled 狀態，無法送出",
+    "tags": [
+      "certs-new",
+      "validation"
+    ],
+    "status": "pending",
+    "sc_ref": "S05-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F05-02",
+    "feature": "申請新憑證",
+    "scenario": "S05-02",
+    "title": "切換 CA 時 Account 選項更新",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在 /certs/new"
+    ],
+    "steps": [
+      "從 CA 下拉選擇「TWCA」"
+    ],
+    "expected": "Account 下拉選項更新為 TWCA 相關帳號（非 letsencrypt 帳號）",
+    "tags": [
+      "certs-new"
+    ],
+    "status": "pending",
+    "sc_ref": "S05-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F05-03",
+    "feature": "申請新憑證",
+    "scenario": "S05-03",
+    "title": "完整填寫並送出憑證申請",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在 /certs/new"
+    ],
+    "steps": [
+      "選擇 CA = Letsencrypt",
+      "選擇有效 Account",
+      "輸入 Common Name = smoke-test-tc.example.com",
+      "點擊「建立 order (送 CA 開單)」"
+    ],
+    "expected": "建立新 Order，跳轉至 Order 詳細頁；Order 狀態為 PENDING_DNS 或 READY",
+    "tags": [
+      "certs-new",
+      "e2e"
+    ],
+    "status": "pending",
+    "sc_ref": "S05-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F05-04",
+    "feature": "申請新憑證",
+    "scenario": "S05-04",
+    "title": "取消申請不建立 Order",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "在 /certs/new 已填入資料"
+    ],
+    "steps": [
+      "填寫 CN 等欄位",
+      "點擊「取消」按鈕"
+    ],
+    "expected": "返回憑證列表頁，不建立新 Order",
+    "tags": [
+      "certs-new"
+    ],
+    "status": "pending",
+    "sc_ref": "S05-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F06-01",
+    "feature": "匯入既有憑證",
+    "scenario": "S06-01",
+    "title": "PEM 格式憑證單張匯入",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "有有效的 PEM 憑證文字"
+    ],
+    "steps": [
+      "導航至 /certs/import",
+      "貼上 PEM 憑證內容",
+      "送出匯入"
+    ],
+    "expected": "匯入成功；憑證出現在憑證列表，狀態為 IMPORTED",
+    "tags": [
+      "certs-import"
+    ],
+    "status": "pending",
+    "sc_ref": "S06-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F06-03",
+    "feature": "匯入既有憑證",
+    "scenario": "S06-03",
+    "title": "無效 PEM 格式顯示錯誤",
+    "priority": "P1",
+    "type": "negative",
+    "preconditions": [
+      "已登入",
+      "在 /certs/import"
+    ],
+    "steps": [
+      "貼上非 PEM 格式的任意文字",
+      "嘗試送出"
+    ],
+    "expected": "顯示格式錯誤訊息，不執行匯入",
+    "tags": [
+      "certs-import",
+      "validation",
+      "negative"
+    ],
+    "status": "pending",
+    "sc_ref": "S06-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F07-01",
+    "feature": "ACME 帳號",
+    "scenario": "S07-01",
+    "title": "帳號列表顯示所有 ACME 帳號",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "導航至 /accounts"
+    ],
+    "expected": "顯示所有帳號，每筆包含 CA Provider、顯示名稱、聯絡 email；已知有 rxrita、production、sup-test、validation-test、test、Legacy from yaml 等帳號",
+    "tags": [
+      "smoke",
+      "accounts"
+    ],
+    "status": "pending",
+    "sc_ref": "S07-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-01",
+    "feature": "Account 詳細",
+    "scenario": "S08-01",
+    "title": "Account 詳細頁顯示完整資訊",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "導航至 /accounts/letsencrypt/acc_legacy_letsencrypt"
+    ],
+    "expected": "顯示 CA、顯示名稱、聯絡 email（或無聯絡）、最近 Order 摘要；提供「下載 Account Key」按鈕",
+    "tags": [
+      "smoke",
+      "account-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-02",
+    "feature": "Account 詳細",
+    "scenario": "S08-02",
+    "title": "測試新增、編輯、刪除帳號，並檢視是否能看見正確提示訊息",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "新增帳號 → 驗證成功提示 → 編輯顯示名稱 → 儲存 → 刪除帳號 → 驗證導回列表"
+    ],
+    "expected": "各步驟均顯示正確提示訊息，刪除後導回 /accounts",
+    "tags": [
+      "functional",
+      "account-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-03",
+    "feature": "Account 詳細",
+    "scenario": "S08-03",
+    "title": "測試轉移負責人帳號功能，並檢查是否能轉移不同的權限",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "新增帳號 → 進入詳細頁 → 點「轉移負責人」→ 選擇新負責人 → 確認轉移 → 刪除帳號清理"
+    ],
+    "expected": "轉移操作成功，帳號負責人更新，清理後導回 /accounts",
+    "tags": [
+      "functional",
+      "account-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-04",
+    "feature": "Account 詳細",
+    "scenario": "S08-04",
+    "title": "測試新增RXCA帳號 [SDET TODO] RXCA 環境 Network error 訊息不穩定，待確認後啟用",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入",
+      "SIT 環境 RXCA 連線正常"
+    ],
+    "steps": [
+      "前往 /accounts → 切換 RXCA 頁籤 → 新增帳號 → 送出"
+    ],
+    "expected": "應顯示 Network error 或明確錯誤訊息",
+    "tags": [
+      "functional",
+      "account-detail",
+      "skip"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-04",
+    "notes": "[SDET TODO] RXCA 環境 Network error 訊息不穩定，暫跳過",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-05",
+    "feature": "Account 詳細",
+    "scenario": "S08-05",
+    "title": "測試新增TWCA EAB，先測試帶入假資料是否會報錯",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "前往 /accounts → 切換 TWCA EAB → 填入假資料 → 送出"
+    ],
+    "expected": "顯示 Bad key size: 錯誤訊息",
+    "tags": [
+      "functional",
+      "account-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-06",
+    "feature": "Account 詳細",
+    "scenario": "S08-06",
+    "title": "TWCA 帳號詳細頁顯示完整資訊",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "導航至 /accounts/twca/acc_c720a2aad6854190"
+    ],
+    "expected": "顯示帳號名稱、CA 類型、主檔資料、名下訂單 / 憑證（總筆數: 2，含 ISSUED）",
+    "tags": [
+      "smoke",
+      "account-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-06",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F08-07",
+    "feature": "Account 詳細",
+    "scenario": "S08-07",
+    "title": "測試新增TWCA EAB，檢查欄位為空白時的錯誤訊息",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "前往 /accounts → TWCA EAB → 空白送出 → 填入無效 EAB Key → 再送出"
+    ],
+    "expected": "空白送出時必填欄位仍可見；無效 Key 送出後顯示 Bad key size: 錯誤訊息",
+    "tags": [
+      "functional",
+      "account-detail"
+    ],
+    "status": "pending",
+    "sc_ref": "S08-07",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-01",
+    "feature": "DNS 機構",
+    "scenario": "S10-01",
+    "title": "DNS Provider 清單顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/dns-providers"
+    ],
+    "expected": "顯示所有 DNS Provider 設定（Cloudflare/Route53/Azure DNS/BIND/Manual/acme-dns 等）",
+    "tags": [
+      "smoke",
+      "dns-providers"
+    ],
+    "status": "pending",
+    "sc_ref": "S10-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F11-01",
+    "feature": "Group 管理",
+    "scenario": "S11-01",
+    "title": "Group 清單顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/groups"
+    ],
+    "expected": "顯示所有 Group，至少包含「Default group」",
+    "tags": [
+      "smoke",
+      "groups"
+    ],
+    "status": "pending",
+    "sc_ref": "S11-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F11-02",
+    "feature": "Group 管理",
+    "scenario": "S11-02",
+    "title": "建立新 Group",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入 admin",
+      "在 /admin/groups"
+    ],
+    "steps": [
+      "點擊「新增 Group」",
+      "輸入 Group 名稱 'QA-Test-Group'",
+      "確認建立"
+    ],
+    "expected": "'QA-Test-Group' 出現在 Group 清單中",
+    "tags": [
+      "groups"
+    ],
+    "status": "pending",
+    "sc_ref": "S11-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F12-01",
+    "feature": "User 管理",
+    "scenario": "S12-01",
+    "title": "User 清單顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/users"
+    ],
+    "expected": "顯示所有使用者，欄位包含 email、角色（admin/supervisor/user）、Group；已知帳號：admin@local、user1@local、user2@local、sup1@local、sup2qa@local",
+    "tags": [
+      "smoke",
+      "users"
+    ],
+    "status": "pending",
+    "sc_ref": "S12-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F12-02",
+    "feature": "User 管理",
+    "scenario": "S12-02",
+    "title": "建立新 User",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入 admin",
+      "在 /admin/users"
+    ],
+    "steps": [
+      "點擊「新增 User」",
+      "輸入 email = qa-smoke-test@local，角色 = user",
+      "確認建立"
+    ],
+    "expected": "新 User 出現在清單中，角色為 user",
+    "tags": [
+      "users"
+    ],
+    "status": "pending",
+    "sc_ref": "S12-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F13-01",
+    "feature": "Endpoint 管理",
+    "scenario": "S13-01",
+    "title": "Endpoint 清單顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/endpoints"
+    ],
+    "expected": "顯示所有 Endpoint，類型包含 local/webhook/ssh/f5/k8s_secret 中的至少一種",
+    "tags": [
+      "smoke",
+      "endpoints"
+    ],
+    "status": "pending",
+    "sc_ref": "S13-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F13-02",
+    "feature": "Endpoint 管理",
+    "scenario": "S13-02",
+    "title": "新增 local Endpoint",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入 admin",
+      "在 /admin/endpoints"
+    ],
+    "steps": [
+      "點擊「新增 Endpoint」",
+      "選擇類型 local",
+      "填寫憑證路徑與 key 路徑",
+      "儲存"
+    ],
+    "expected": "新 local Endpoint 出現在清單中",
+    "tags": [
+      "endpoints"
+    ],
+    "status": "pending",
+    "sc_ref": "S13-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F14-01",
+    "feature": "授權管理",
+    "scenario": "S14-01",
+    "title": "授權狀態顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/license"
+    ],
+    "expected": "顯示授權狀態（有效 / 到期 / 尚未啟用），若有效則顯示到期日",
+    "tags": [
+      "smoke",
+      "license"
+    ],
+    "status": "pending",
+    "sc_ref": "S14-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F15-01",
+    "feature": "部署核准",
+    "scenario": "S15-01",
+    "title": "待審清單顯示三類任務",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin 或 supervisor"
+    ],
+    "steps": [
+      "導航至 /admin/approvals"
+    ],
+    "expected": "頁面顯示三個分類區塊：憑證部署到 Endpoint、DNS Binding 變更、憑證申請 CIR；各區塊可能為空（0 筆）",
+    "tags": [
+      "smoke",
+      "approvals"
+    ],
+    "status": "pending",
+    "sc_ref": "S15-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F15-02",
+    "feature": "部署核准",
+    "scenario": "S15-02",
+    "title": "核准部署任務",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入 supervisor 或 admin",
+      "有 Pending 的部署任務"
+    ],
+    "steps": [
+      "在 /admin/approvals 找到 Pending 的部署任務",
+      "點擊「核准」"
+    ],
+    "expected": "任務狀態更新為 APPROVED；觸發部署流程",
+    "tags": [
+      "approvals",
+      "e2e"
+    ],
+    "status": "pending",
+    "sc_ref": "S15-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F15-03",
+    "feature": "部署核准",
+    "scenario": "S15-03",
+    "title": "拒絕部署任務",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入 supervisor 或 admin",
+      "有 Pending 的部署任務"
+    ],
+    "steps": [
+      "在 /admin/approvals 找到 Pending 任務",
+      "點擊「拒絕」",
+      "填寫拒絕原因",
+      "確認"
+    ],
+    "expected": "任務狀態更新為 REJECTED",
+    "tags": [
+      "approvals"
+    ],
+    "status": "pending",
+    "sc_ref": "S15-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F16-01",
+    "feature": "憑證掃描",
+    "scenario": "S16-01",
+    "title": "掃描頁面顯示與觸發掃描",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/scan",
+      "觀察頁面結構"
+    ],
+    "expected": "顯示 Endpoint 選擇器與掃描觸發按鈕",
+    "tags": [
+      "smoke",
+      "scan"
+    ],
+    "status": "pending",
+    "sc_ref": "S16-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F17-01",
+    "feature": "合規政策",
+    "scenario": "S17-01",
+    "title": "合規政策清單顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/policies"
+    ],
+    "expected": "顯示強制政策清單，欄位含政策類型（演算法/Key size/CA/有效期/域名）、設定值、是否啟用",
+    "tags": [
+      "smoke",
+      "policies"
+    ],
+    "status": "pending",
+    "sc_ref": "S17-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F18-01",
+    "feature": "稽核紀錄",
+    "scenario": "S18-01",
+    "title": "稽核紀錄顯示操作歷史",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /audit"
+    ],
+    "expected": "顯示操作紀錄列表，欄位含操作者、操作類型、before/after diff、時間戳；HMAC 完整性通過",
+    "tags": [
+      "smoke",
+      "audit"
+    ],
+    "status": "pending",
+    "sc_ref": "S18-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F18-02",
+    "feature": "稽核紀錄",
+    "scenario": "S18-02",
+    "title": "稽核紀錄 Excel 匯出",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已登入 admin",
+      "在 /audit"
+    ],
+    "steps": [
+      "點擊「Excel 匯出」按鈕"
+    ],
+    "expected": "觸發 .xlsx 下載，檔案包含稽核紀錄資料",
+    "tags": [
+      "audit",
+      "export"
+    ],
+    "status": "pending",
+    "sc_ref": "S18-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F19-01",
+    "feature": "系統設定",
+    "scenario": "S19-01",
+    "title": "系統設定頁面顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入 admin"
+    ],
+    "steps": [
+      "導航至 /admin/settings"
+    ],
+    "expected": "顯示一般設定（key-value）、多語系翻譯、Mail(SMTP) 等設定區塊",
+    "tags": [
+      "smoke",
+      "settings"
+    ],
+    "status": "pending",
+    "sc_ref": "S19-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F20-01",
+    "feature": "我的帳號",
+    "scenario": "S20-01",
+    "title": "個人資料顯示",
+    "priority": "P1",
+    "type": "smoke",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "導航至 /me"
+    ],
+    "expected": "顯示當前登入帳號的 email、角色；包含「修改密碼」與「啟用 MFA」區塊",
+    "tags": [
+      "smoke",
+      "me"
+    ],
+    "status": "pending",
+    "sc_ref": "S20-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F20-02",
+    "feature": "我的帳號",
+    "scenario": "S20-02",
+    "title": "修改密碼成功",
+    "priority": "P1",
+    "type": "functional",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "在 /me 點擊修改密碼",
+      "輸入舊密碼（testtest）",
+      "輸入新密碼（testtest2）",
+      "輸入確認密碼（testtest2）",
+      "送出"
+    ],
+    "expected": "密碼修改成功提示；使用新密碼 testtest2 可重新登入；測試完成後還原密碼",
+    "tags": [
+      "me",
+      "auth"
+    ],
+    "status": "pending",
+    "sc_ref": "S20-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F20-03",
+    "feature": "我的帳號",
+    "scenario": "S20-02",
+    "title": "舊密碼錯誤時拒絕修改",
+    "priority": "P1",
+    "type": "negative",
+    "preconditions": [
+      "已登入"
+    ],
+    "steps": [
+      "在 /me 點擊修改密碼",
+      "輸入錯誤的舊密碼",
+      "輸入任意新密碼",
+      "送出"
+    ],
+    "expected": "顯示「舊密碼錯誤」訊息，密碼不被更改",
+    "tags": [
+      "me",
+      "auth",
+      "negative"
+    ],
+    "status": "pending",
+    "sc_ref": "S20-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F09-01",
+    "feature": "CA 機構管理",
+    "scenario": "",
+    "title": "CA 機構列表正確顯示",
+    "priority": "P2",
+    "type": "smoke",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 CA 機構管理頁面",
+      "觀察列表顯示"
+    ],
+    "expected": "CA 機構列表正確顯示，包含已設定的 CA Provider",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S09-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F09-02",
+    "feature": "CA 機構管理",
+    "scenario": "",
+    "title": "新增 CA 機構表單開啟與取消",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 CA 機構管理頁面",
+      "點擊「新增 CA 機構」",
+      "觀察表單開啟",
+      "點擊「取消」"
+    ],
+    "expected": "新增表單正確開啟；取消後表單關閉，列表無新增資料",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S09-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F09-03",
+    "feature": "CA 機構管理",
+    "scenario": "",
+    "title": "編輯 CA 機構表單開啟與取消",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 CA 機構管理頁面",
+      "對現有 CA 機構點擊「編輯」",
+      "觀察編輯表單開啟",
+      "點擊「取消」"
+    ],
+    "expected": "編輯表單正確開啟並帶入現有資料；取消後無異動",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S09-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F09-04",
+    "feature": "CA 機構管理",
+    "scenario": "",
+    "title": "新增 CA 機構並驗證列表（會實際寫入資料，需隔離環境）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 CA 機構管理頁面",
+      "點擊「新增 CA 機構」",
+      "填寫 CA 機構資料並儲存",
+      "確認列表出現新增項目"
+    ],
+    "expected": "新增 CA 機構成功，列表中可見新增的 CA",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S09-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F09-05",
+    "feature": "CA 機構管理",
+    "scenario": "",
+    "title": "新增後刪除 CA 機構（完整流程）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 CA 機構管理頁面",
+      "新增測試用 CA 機構",
+      "確認新增成功",
+      "對該 CA 點擊「刪除」",
+      "確認列表中該 CA 消失"
+    ],
+    "expected": "新增後刪除完整流程正常，列表恢復原始狀態",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S09-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-02",
+    "feature": "DNS 機構",
+    "scenario": "",
+    "title": "新增 Manual DNS Provider（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 DNS 機構管理頁面",
+      "點擊「新增 DNS 帳號」",
+      "選擇 Manual 類型",
+      "填寫名稱並儲存",
+      "確認列表出現後刪除"
+    ],
+    "expected": "Manual DNS Provider 新增成功並顯示於列表，刪除後清單恢復",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S10-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-03",
+    "feature": "DNS 機構",
+    "scenario": "",
+    "title": "Cloudflare 類型表單驗證（名稱填寫後儲存啟用）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "新增 DNS 帳號",
+      "選擇 Cloudflare 類型",
+      "填寫名稱欄位",
+      "點擊「儲存」"
+    ],
+    "expected": "Cloudflare 類型 DNS 帳號儲存成功，列表出現新增項目",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S10-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-04",
+    "feature": "DNS 機構",
+    "scenario": "",
+    "title": "Manual Provider 測試連線回傳成功（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "新增 Manual DNS Provider",
+      "填寫名稱",
+      "點擊「測試連線」",
+      "確認後刪除"
+    ],
+    "expected": "測試連線回傳成功訊息",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S10-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-05",
+    "feature": "DNS 機構",
+    "scenario": "",
+    "title": "Cloudflare 假 token 測試連線回傳錯誤（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "新增 Cloudflare DNS Provider",
+      "填寫假 API Token",
+      "點擊「測試連線」",
+      "確認後刪除"
+    ],
+    "expected": "測試連線回傳錯誤訊息（token 無效）",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S10-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-06",
+    "feature": "DNS 機構",
+    "scenario": "",
+    "title": "新增表單類型切換驗證（Manual↔非Manual 欄位顯示/消失）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "開啟新增 DNS 帳號表單",
+      "選擇 Manual 類型，觀察欄位",
+      "切換至 Cloudflare 類型，觀察欄位變化"
+    ],
+    "expected": "Manual 與非 Manual 類型切換時，特定欄位（如 API Token）正確顯示或消失",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S10-06",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F10-07",
+    "feature": "DNS 機構",
+    "scenario": "",
+    "title": "新增 Manual DNS Provider → 測試連線 → 刪除",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "新增 Manual DNS Provider 並填寫名稱",
+      "點擊「測試連線」確認成功",
+      "點擊「刪除」",
+      "確認列表已移除"
+    ],
+    "expected": "新增 → 測試連線 → 刪除完整流程均正常",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S10-07",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F11-03",
+    "feature": "Group 管理",
+    "scenario": "",
+    "title": "編輯 Group Display name（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 Group 管理頁面",
+      "新增測試 Group",
+      "對該 Group 點擊「編輯」",
+      "修改 Display name",
+      "儲存後確認",
+      "刪除該 Group"
+    ],
+    "expected": "Display name 修改成功並顯示於列表，刪除後清單恢復",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S11-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F12-03",
+    "feature": "User 管理",
+    "scenario": "",
+    "title": "搜尋 User",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 User 管理頁面",
+      "在搜尋欄輸入 User email 關鍵字",
+      "觀察列表過濾結果"
+    ],
+    "expected": "列表只顯示符合關鍵字的 User，不符合者不顯示",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S12-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F12-04",
+    "feature": "User 管理",
+    "scenario": "",
+    "title": "Role 篩選",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 User 管理頁面",
+      "在 Role 篩選下拉選擇特定角色",
+      "觀察列表過濾結果"
+    ],
+    "expected": "列表只顯示該 Role 的 User",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S12-06",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F12-05",
+    "feature": "User 管理",
+    "scenario": "",
+    "title": "編輯 User 顯示名稱（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "新增測試 User",
+      "對該 User 點擊「編輯」",
+      "修改顯示名稱",
+      "儲存",
+      "確認名稱更新",
+      "刪除該 User"
+    ],
+    "expected": "User 顯示名稱修改成功，刪除後清單恢復",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S12-07",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F12-06",
+    "feature": "User 管理",
+    "scenario": "",
+    "title": "強登出 User（確認 dialog 出現後取消）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 User 管理頁面",
+      "對任一 User 點擊「強登出」",
+      "觀察確認 dialog 出現",
+      "點擊「取消」"
+    ],
+    "expected": "強登出確認 dialog 正確出現；取消後 dialog 關閉，User 未被登出",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S12-08",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F13-03",
+    "feature": "Endpoint 管理",
+    "scenario": "",
+    "title": "新增 webhook Endpoint（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 Endpoint 管理頁面",
+      "點擊「新增 Endpoint」",
+      "選擇 webhook 類型",
+      "填寫必要欄位",
+      "儲存並確認列表",
+      "刪除該 Endpoint"
+    ],
+    "expected": "webhook Endpoint 新增成功並顯示於列表，刪除後清單恢復",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S13-03",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F13-04",
+    "feature": "Endpoint 管理",
+    "scenario": "",
+    "title": "新增 SSH Endpoint（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 Endpoint 管理頁面",
+      "點擊「新增 Endpoint」",
+      "選擇 SSH 類型",
+      "填寫必要欄位",
+      "儲存並確認列表",
+      "刪除該 Endpoint"
+    ],
+    "expected": "SSH Endpoint 新增成功並顯示於列表，刪除後清單恢復",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S13-04",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F13-05",
+    "feature": "Endpoint 管理",
+    "scenario": "",
+    "title": "新增 F5 Endpoint（自建自刪）",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至 Endpoint 管理頁面",
+      "點擊「新增 Endpoint」",
+      "選擇 F5 類型",
+      "填寫必要欄位",
+      "儲存並確認列表",
+      "刪除該 Endpoint"
+    ],
+    "expected": "F5 Endpoint 新增成功並顯示於列表，刪除後清單恢復",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S13-05",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F14-02",
+    "feature": "授權管理",
+    "scenario": "",
+    "title": "啟用授權碼",
+    "priority": "P3",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至授權管理頁面",
+      "點擊「啟用授權碼」",
+      "輸入有效授權碼",
+      "確認送出"
+    ],
+    "expected": "授權碼啟用成功，系統授權狀態更新",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S14-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F16-02",
+    "feature": "憑證掃描",
+    "scenario": "",
+    "title": "實際觸發掃描",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至憑證掃描頁面",
+      "點擊「觸發掃描」",
+      "等待掃描完成",
+      "觀察掃描結果"
+    ],
+    "expected": "掃描成功觸發，掃描紀錄更新顯示最新掃描結果",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S16-01",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F17-02",
+    "feature": "合規政策",
+    "scenario": "",
+    "title": "新增合規政策",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至合規政策頁面",
+      "點擊「新增政策」",
+      "填寫政策名稱與條件",
+      "儲存",
+      "確認列表出現新政策"
+    ],
+    "expected": "合規政策新增成功，列表顯示新增的政策項目",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S17-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F19-02",
+    "feature": "系統設定",
+    "scenario": "",
+    "title": "修改設定值",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至系統設定頁面",
+      "修改一般設定值",
+      "儲存",
+      "確認設定值已更新"
+    ],
+    "expected": "系統設定值修改成功並持久保存",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S19-02",
+    "manual_result": ""
+  },
+  {
+    "id": "TC-F19-03",
+    "feature": "系統設定",
+    "scenario": "",
+    "title": "SMTP 配置設定",
+    "priority": "P2",
+    "type": "functional",
+    "preconditions": [
+      "已以 admin 身分登入"
+    ],
+    "steps": [
+      "導航至系統設定頁面",
+      "切換至 SMTP 配置區塊",
+      "填寫 SMTP 主機/Port/帳密",
+      "儲存",
+      "確認設定已套用"
+    ],
+    "expected": "SMTP 配置儲存成功，郵件發送設定更新",
+    "tags": [],
+    "status": "pending",
+    "sc_ref": "S19-03",
+    "manual_result": ""
+  }
+]

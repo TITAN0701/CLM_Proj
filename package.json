@@ -1,0 +1,23 @@
+{
+  "name": "qaai-spec-driven-automation",
+  "private": true,
+  "scripts": {
+    "test:e2e": "node scripts/cypress/run-cypress.js run",
+    "test:e2e:open": "node scripts/cypress/run-cypress.js open",
+    "test:e2e:verify": "node scripts/cypress/run-cypress.js verify",
+    "allure:generate": "allure generate artifacts/raw/allure-results --clean -o artifacts/generated/allure-report",
+    "allure:open": "allure open artifacts/generated/allure-report",
+    "sync:sheet": "node scripts/sheets/sync-to-sheet.js",
+    "upload:drive": "node scripts/sheets/upload-to-drive.js",
+    "report:full": "npm run allure:generate && node scripts/sheets/sync-to-sheet.js && node scripts/sheets/upload-to-drive.js && npm run allure:open",
+    "test:report": "npm run test:e2e && npm run report:full"
+  },
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.2",
+    "allure-commandline": "^2.34.1",
+    "cypress": "^13.17.0",
+    "exceljs": "^4.4.0",
+    "googleapis": "^173.0.0",
+    "typescript": "^5.0.0"
+  }
+}

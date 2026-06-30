@@ -1,0 +1,76 @@
+﻿{
+    "$schema":  "./config.schema.json",
+    "project":  {
+                    "name":  "RXCLM憑證生命週期管理系統",
+                    "code":  "rxclm",
+                    "language":  "zh-TW"
+                },
+    "env":  {
+                "sitUrl":  "http://192.168.0.122:19010",
+                "apiBaseUrl":  "",
+                "testEmail":  "admin@local",
+                "ciSecrets":  [
+                                  "CYPRESS_BASE_URL",
+                                  "API_BASE_URL",
+                                  "TEST_USER_EMAIL",
+                                  "TEST_USER_PASSWORD"
+                              ]
+            },
+    "paths":  {
+                  "pmInbox":  "pm-inbox/",
+                  "specs":  "qa-workspace/specs/",
+                  "schemas":  "qa-workspace/schemas/",
+                  "knowledge":  "qa-knowledge/",
+                  "automationE2E":  "automation/e2e/specs/",
+                  "automationAPI":  "automation/api/tests/",
+                  "pages":  "automation/e2e/pages/",
+                  "flows":  "automation/e2e/flows/",
+                  "fixtures":  "automation/e2e/fixtures/",
+                  "snapshots":  "artifacts/raw/screenshots/snapshots/",
+                  "screenshots":  "artifacts/raw/screenshots/smoke/",
+                  "allureResults":  "artifacts/raw/allure-results/",
+                  "generatedQA":  "artifacts/generated/qa/",
+                  "generatedPM":  "artifacts/generated/pm/",
+                  "bugs":  "artifacts/generated/qa/bugs/"
+              },
+    "knowledge":  {
+                      "files":  [
+                                    "qa-knowledge/glossary.md",
+                                    "qa-knowledge/selector-policy.md",
+                                    "qa-knowledge/test-strategy.md",
+                                    "qa-knowledge/risk-rules.md"
+                                ]
+                  },
+    "automation":  {
+                       "defaultFramework":  "cypress",
+                       "apiFramework":  "pytest",
+                       "selectorPolicy":  "no-data-testid",
+                       "skipMarker":  "[SDET TODO]"
+                   },
+    "reports":  {
+                    "pmLanguage":  "zh-TW",
+                    "statusValues":  [
+                                         "Not Evaluated",
+                                         "Passed",
+                                         "Failed",
+                                         "Blocked"
+                                     ],
+                    "exportDocx":  true
+                },
+    "evals":  {
+                  "rubrics":  ".claude/evals/",
+                  "autoEval":  true
+              },
+    "integrations":  {
+                         "github":  {
+                                        "repo":  "TITAN0701/QAAISup",
+                                        "bugLabel":  "bug"
+                                    },
+                         "googleSheets":  {
+                                              "spreadsheetId":  "1-EO-84MVnU7zyBoCJUcJvNJpPYYYCzmRldCwDvEcO1Q"
+                                          },
+                         "playwright":  {
+                                            "pagesFile":  "automation/e2e/pages.md"
+                                        }
+                     }
+}
