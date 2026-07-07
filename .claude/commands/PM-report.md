@@ -53,9 +53,12 @@ $ARGUMENTS
 資料確認後依需要執行：
 
 ```powershell
+npm run check:alignment
 npm run sync:sheet
 node scripts/sheets/upload-to-drive.js
 ```
+
+`check:alignment` 失敗 → **停止**，告知使用者修正 `scripts/shared/sheet-definitions.js` 後重跑。
 
 回報 Google Sheets 連結與 Drive xlsx 連結。
 

@@ -27,6 +27,7 @@ const {
   loadFailures, getResultSymbol, buildBugMap, loadBugReports,
   loadScenarios, loadIntegrationTests, loadManualTestReport, TC_DIR, ARTIFACTS_QA,
 } = require('../shared/qa-data');
+const { SHEET_DEFINITIONS } = require('../shared/sheet-definitions');
 
 const PROJECT_ROOT     = path.resolve(__dirname, '../..');
 const CREDENTIALS_PATH = path.join(PROJECT_ROOT, '.claude', 'google-credentials.json');
@@ -59,57 +60,14 @@ async function findFolderId(drive, folderNames) {
   return parentId;
 }
 
-// buildFailMap：從 failure-report.md 建立 Set（upload-to-drive 只需判斷是否存在）
-function buildFailMap() { return loadFailureMap(); }
-
-// ── 載入 Test Cases（含 SC Ref、執行結果、Bug） ──
-function loadTestCases(state) {
-  const rows = [];
-  const failMap   = buildFailMap(state);
-  const bugMap    = buildBugMap();
-  const tcResults = state ? (state.tc_results || {}) : {};
-  if (!fs.existsSync(TC_DIR)) return rows;
-  for (const feature of fs.readdirSync(TC_DIR)) {
-    const tcFile = path.join(TC_DIR, feature, 'test-cases.json');
-    if (!fs.existsSync(tcFile)) continue;
-    let data;
-    try { data = JSON.parse(fs.readFileSync(tcFile, 'utf8')); } catch { continue; }
-    const tcList = Array.isArray(data) ? data : (data.test_cases || []);
-    for (const tc of tcList) {
-      const featureName = tc.feature || data.feature || feature;
-      const featureState = state ? (state.features?.[featureName] || null) : null;
-      const result = getResultSymbol(tc.id || '', tc.title || '', featureState, failMap, tcResults);
-      const note         = tc.automation_candidate === false ? (tc.notes || '無法自動化') : (tc.notes || '');
-      const bugId        = bugMap.byTc[tc.id || ''] || '';
-      const precond      = Array.isArray(tc.preconditions) ? tc.preconditions.join('\n') : (tc.preconditions || '');
-      const steps        = Array.isArray(tc.steps)        ? tc.steps.join('\n')        : (tc.steps || '');
-      const expected     = tc.expected || '';
-      const manualResult = tc.manual_result || '';
-      rows.push([
-        featureName,
-        tc.id || '',
-        tc.sc_ref || tc.scenario || '',
-        tc.title || '',
-        tc.priority || '',
-        tc.type || '',
-        precond,
-        steps,
-        expected,
-        result,
-        manualResult,
-        note,
-        bugId,
-      ]);
-    }
-  }
-  return rows;
-}
+// ── Test Cases / Risk Notes 統一從 sheet-definitions 取（避免雙重維護）──
+function getSheetDef(name) { return SHEET_DEFINITIONS.find(d => d.name === name); }
 
 
 // ── 合併檢視（TC + IT + SC + 執行結果）—— PM 主要看這頁 ──
 function loadMergedView(state) {
   const rows = [];
-  const failMap   = buildFailMap(state);
+  const failMap   = loadFailureMap();
   const bugMap    = buildBugMap();
   const tcResults = state ? (state.tc_results || {}) : {};
 
@@ -376,31 +334,6 @@ function loadIntegrationScenarios() {
   return rows;
 }
 
-// ── 載入 Risk Notes ──
-function loadRiskNotes() {
-  const rows = [];
-  const riskFile = path.join(ARTIFACTS_QA, 'risk-notes.md');
-  if (!fs.existsSync(riskFile)) return rows;
-  const content = fs.readFileSync(riskFile, 'utf8');
-  const blocks = content.split(/^## /m).slice(1);
-  for (const block of blocks) {
-    const lines = block.split('\n');
-    const feature = lines[0].trim();
-    if (feature === '整體' || feature === 'Overall') continue;
-    const levelMatch  = block.match(/\*\*?風險等級\*\*?[：:]\s*([^\n]+)/);
-    const scopeMatch  = block.match(/影響範圍[：:]\s*([^\n]+)/);
-    const ownerMatch  = block.match(/建議\s*Owner[：:]\s*([^\n]+)/);
-    const relMatch    = block.match(/(?:是否建議\s*Release|建議\s*Release)[：:]\s*([^\n]+)/);
-    rows.push([
-      feature,
-      levelMatch  ? levelMatch[1].trim()  : '',
-      scopeMatch  ? scopeMatch[1].trim()  : '',
-      ownerMatch  ? ownerMatch[1].trim()  : '',
-      relMatch    ? relMatch[1].trim()    : '',
-    ]);
-  }
-  return rows;
-}
 
 
 // ── 載入佐證 index ──
@@ -487,22 +420,24 @@ async function buildXlsx(outputPath) {
   add('合併檢視',
     ['Feature', 'SC ID', 'TC ID', '情境標題', 'Given', 'When', 'Then', '優先度', '類型', '執行結果', 'Bug'],
     loadMergedView(state));
-  add('Test Cases',
-    ['Feature', 'TC ID', 'SC Ref', '標題', '優先度', '類型', '前置條件', '測試步驟', '預期結果', '執行結果', '手測結果', '備註', 'Bug'],
-    loadTestCases(state));
+  const tcDef = getSheetDef('Test Cases');
+  add('Test Cases', tcDef.headers, tcDef.loader());
   add('Scenarios',     ['Feature', 'SC ID', '情境標題', 'Given', 'When', 'Then'], loadScenarios());
   add('整合情境',      ['分類', 'IT SC ID', '情境標題', 'Given', 'When', 'Then'], loadIntegrationScenarios());
   add('Test Report',   ['Feature', 'Pass', 'Pending', 'Fail', 'Bug 數', 'Playwright 補驗', 'Pipeline ID', '備註'], loadTestReport());
   add('Release Summary', ['項目 / 分類', '值 / 數量', '原因', 'TC 清單'], loadReleaseSummary());
-  add('Risk Notes',    ['Feature', '風險等級', '影響範圍', '建議 Owner', '建議 Release'], loadRiskNotes());
+  const rnDef = getSheetDef('Risk Notes');
+  add('Risk Notes', rnDef.headers, rnDef.loader());
   add('Bug Reports',   ['Bug ID', '標題', '嚴重程度', '狀態', '影響功能', '日期', '原因'], loadBugReports());
-  add('Failures',      ['TC Full Title', 'Feature', 'TC ID', '錯誤訊息', '失敗 Selector', 'Bug ID', '狀態'], loadFailures());
+  const flDef = getSheetDef('Failures');
+  add('Failures', flDef.headers, flDef.loader());
   add('Integration Tests',
     ['類型', 'Feature', 'TC ID', '標題', '優先度', '測試方法', 'E2E 流程說明', '外部系統依賴', '前置條件', '備註', 'Bug'],
     loadIntegrationTests());
-  add('手測報告',
-    ['TC ID', 'Feature', '測試類型', 'Given（前置條件）', 'When（操作步驟）', 'Then（預期結果）', '優先度', '前置環境', '外部依賴', '測試環境', '執行結果', '實際結果', 'Bug ID', '測試人員', '測試日期', '原始 INT ID'],
-    loadManualTestReport());
+  const mrDef = getSheetDef('手測報告');
+  add('手測報告', mrDef.headers, mrDef.loader());
+  const blDef = getSheetDef('上線阻斷 Go-No-Go');
+  add('上線阻斷 Go-No-Go', blDef.headers, blDef.loader());
 
   // Sheet 10 & 11：佐證（縮圖 + 大圖）
   addEvidenceSheets(wb, loadEvidenceIndex());

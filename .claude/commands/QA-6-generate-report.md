@@ -63,10 +63,12 @@ $ARGUMENTS
 ### Step 3 — 同步 Google Sheets
 
 ```powershell
+npm run check:alignment
 npm run sync:sheet
 ```
 
-失敗（token 過期）→ 告知使用者執行 `node scripts/sheets/auth-sheets.js` 重新授權。
+`check:alignment` 失敗（有欄位不對齊）→ **停止**，告知使用者修正 `scripts/shared/sheet-definitions.js` 後重跑。
+`sync:sheet` 失敗（token 過期）→ 告知使用者執行 `node scripts/sheets/auth-sheets.js` 重新授權。
 
 ### Step 4 — 產出 xlsx 並上傳 Google Drive
 

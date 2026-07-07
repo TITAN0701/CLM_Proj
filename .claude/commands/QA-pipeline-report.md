@@ -39,11 +39,14 @@ npm run allure:generate
 
 ### Step 3 — 同步 Google Sheets
 
-執行：
+執行（先驗證欄位對齊，再同步）：
 
 ```powershell
+npm run check:alignment
 npm run sync:sheet
 ```
+
+`check:alignment` 失敗（有欄位不對齊）→ **停止**，告知使用者修正 `scripts/shared/sheet-definitions.js` 後重跑。
 
 分頁內容（共 7 個，QA 工作用）：
 - `Test Cases`：來源 `qa-workspace/specs/*/test-cases.json` + pipeline-state（只含 TC-F 系列）
