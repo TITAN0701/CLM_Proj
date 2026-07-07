@@ -7,6 +7,7 @@
     "test:e2e:verify": "node scripts/cypress/run-cypress.js verify",
     "allure:generate": "allure generate artifacts/raw/allure-results --clean -o artifacts/generated/allure-report",
     "allure:open": "allure open artifacts/generated/allure-report",
+    "check:alignment": "node scripts/qa-workspace/check-alignment.js",
     "sync:sheet": "node scripts/sheets/sync-to-sheet.js",
     "upload:drive": "node scripts/sheets/upload-to-drive.js",
     "report:full": "npm run allure:generate && node scripts/sheets/sync-to-sheet.js && node scripts/sheets/upload-to-drive.js && npm run allure:open",

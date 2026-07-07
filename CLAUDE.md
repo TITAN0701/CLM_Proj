@@ -76,7 +76,7 @@ qa-workspace/
     test-cases.json          # 測試案例
     execution-results.json   # 執行結果回填
   schemas/                   # JSON Schema 驗證
-qa-knowledge/                # QA 知識庫（test-strategy, risk-rules, selector-policy, report-format）
+qa-knowledge/                # QA 知識庫（test-strategy, risk-rules, selector-policy, report-format, doc-format）
 artifacts/
   generated/qa/              # AI 產出：test-plan.md, test-cases.json, scenario-matrix.xlsx
   generated/pm/              # PM 報告：release-summary.md

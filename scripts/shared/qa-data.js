@@ -315,47 +315,106 @@ function loadIntegrationTests() {
   return rows;
 }
 
+// ── 共用：讀取原始 INT 資料 ──
+function loadIntRaw() {
+  const intAllPath = path.join(__dirname, 'int-all.json');
+  const intRaw = fs.readFileSync(intAllPath, 'utf8').replace(/^﻿/, '');
+  return JSON.parse(intRaw);
+}
+
+// ── 共用：讀取上線阻斷清單 ──
+function loadBlockingRaw() {
+  const blockPath = path.join(__dirname, 'blocking-list.json');
+  if (!fs.existsSync(blockPath)) return [];
+  return JSON.parse(fs.readFileSync(blockPath, 'utf8'));
+}
+
 // ── 手測報告（新合併 25 section / 405 筆，來自交接包）──
 function loadManualTestReport() {
   const rows = [];
   const bugMap = buildBugMap();
+  const intAll = loadIntRaw();
+  const blocking = loadBlockingRaw();
 
-  // 讀取原始 INT 資料（含完整 given/when/then）
-  const intAllPath = path.join(__dirname, 'int-all.json');
-  const intRaw = fs.readFileSync(intAllPath, 'utf8').replace(/^﻿/, '');
-  const intAll = JSON.parse(intRaw);
-  // 建立 INT id → 原始資料的查詢表
+  // 建立查詢表
   const intMap = {};
   for (const row of intAll) intMap[row.id] = row;
+  const blockMap = {};
+  for (const row of blocking) blockMap[row.id] = row;
+
+  // 執行結果轉換
+  const toResult = (r) => {
+    if (r === 'Pass')    return '✅ Pass';
+    if (r === 'Fail')    return '❌ Fail';
+    if (r === 'Blocked') return '🚫 Blocked';
+    return '🔄 待測試';
+  };
 
   const mergedSections = IT_SECTIONS.slice(17);
   for (const section of mergedSections) {
     for (const tc of section.tcs) {
       const bugId = bugMap.byTc[tc.id] || '';
-      // 從 note 欄取出原始 INT ID（格式：「對應 INT-001」）
       const intId = (tc.note || '').replace('對應 ', '').trim();
-      const raw = intMap[intId] || {};
+      const raw   = intMap[intId]  || {};
+      const block = blockMap[intId] || {};
+      const result = toResult(block.result || '');
       rows.push([
-        tc.id,                                    // TC ID
-        tc.feature,                               // Feature
-        raw.type || tc.testMethod,                // 測試類型
-        (raw.given || tc.e2eFlow || '').replace(/\n/g, ' ').trim(),   // Given（前置條件）
-        (raw.when  || '').replace(/\n/g, ' ').trim(),                 // When（操作步驟）
-        (raw.then  || '').replace(/\n/g, ' ').trim(),                 // Then（預期結果）
-        tc.priority,                              // 優先度
-        raw.preconditions || tc.preconditions || '', // 前置環境
-        raw.externalDeps  || tc.externalDeps  || '', // 外部依賴
-        '',                                       // 測試環境（手填）
-        '🔄 待測試',                               // 執行結果（手填）
-        '',                                       // 實際結果（手填）
-        bugId,                                    // Bug ID
-        '',                                       // 測試人員（手填）
-        '',                                       // 測試日期（手填）
-        intId,                                    // 原始 INT ID
+        tc.id,                                                           // TC ID
+        tc.feature,                                                      // Feature
+        raw.type || tc.testMethod,                                       // 測試類型
+        (raw.given || tc.e2eFlow || '').replace(/\n/g, ' ').trim(),      // Given（前置條件）
+        (raw.when  || '').replace(/\n/g, ' ').trim(),                    // When（操作步驟）
+        (raw.then  || '').replace(/\n/g, ' ').trim(),                    // Then（預期結果）
+        tc.priority,                                                     // 優先度
+        raw.preconditions || tc.preconditions || '',                     // 前置環境
+        raw.externalDeps  || tc.externalDeps  || '',                     // 外部依賴
+        block.env || '',                                                 // 測試環境
+        result,                                                          // 執行結果（來自阻斷清單）
+        (block.actual || '').replace(/\n/g, ' ').trim(),                 // 實際結果
+        bugId || block.bugId || '',                                      // Bug ID
+        block.tester || '',                                              // 測試人員
+        '',                                                              // 測試日期（手填）
+        intId,                                                           // 原始 INT ID
       ]);
     }
   }
   return rows;
+}
+
+// ── 上線阻斷清單（Go/No-Go，來自 RXCLM_QA_上線阻斷排程）──
+function loadBlockingList() {
+  const blocking = loadBlockingRaw();
+  const intAll   = loadIntRaw();
+  const intMap   = {};
+  for (const row of intAll) intMap[row.id] = row;
+
+  const toResult = (r) => {
+    if (r === 'Pass')    return '✅ Pass';
+    if (r === 'Fail')    return '❌ Fail';
+    if (r === 'Blocked') return '🚫 Blocked';
+    return '🔄 待測試';
+  };
+
+  return blocking.map(b => {
+    const raw = intMap[b.id] || {};
+    return [
+      b.day,                                          // 排程日
+      b.id,                                           // INT ID
+      b.group,                                        // 群組
+      b.title,                                        // 標題
+      b.priority,                                     // 優先度
+      b.estMin,                                       // 預估(分)
+      b.env,                                          // 環境
+      toResult(b.result),                             // 執行結果
+      (b.actual || '').replace(/\n/g, ' ').trim(),    // 實際結果
+      b.bugId || '',                                  // 缺陷編號
+      b.tester || '',                                 // 測試者
+      (raw.given || '').replace(/\n/g, ' ').trim(),   // Given
+      (raw.when  || '').replace(/\n/g, ' ').trim(),   // When
+      (raw.then  || '').replace(/\n/g, ' ').trim(),   // Then
+      b.note || '',                                   // 備註
+    ];
+  });
 }
 
 module.exports = {
@@ -370,6 +429,7 @@ module.exports = {
   loadScenarios,
   loadIntegrationTests,
   loadManualTestReport,
+  loadBlockingList,
   TC_DIR,
   ARTIFACTS_QA,
 };
